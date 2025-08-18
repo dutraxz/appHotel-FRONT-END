@@ -1,10 +1,9 @@
 import LoginForm from "../components/loginForm.js";
 import Navbar from "../components/Navbar.js";
 
-export default function renderLoginPage() { 
+export default function renderLoginPage() {
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
-
     const navbar = Navbar();
     nav.appendChild(navbar);
 
@@ -12,19 +11,27 @@ export default function renderLoginPage() {
     divRoot.innerHTML = '';
 
     const titulo = document.createElement('h1');
-    titulo.textContent = 'Faça login ou crie uma conta';
+    titulo.textContent = 'Faça login ou crie sua conta';
     titulo.className = 'titulo';
     titulo.style.textAlign = 'center';
 
-    //Dentro de divRoot terá uma div chamada container e em container estará o formulario
     const container = document.createElement('div');
-    container.className = 'card p-4 shadow-lg'; //Classe do Bootstrap para criar um card
-    container.style.width = '100%'; //Aplicada a largura de 100% na div container pra ocupar a tela
-    container.style.maxWidth = '400px'; //Até que atinja o máximo de 400px
-    divRoot.appendChild(container); //divRoot contém a nova div
+    container.className = 'card p-4 shadow-lg';
+    container.style.width = '100%';
+    container.style.maxWidth = '400px';
 
     const formulario = LoginForm();
     
+    // Adiciona o link para a página de cadastro
+    const registerLink = document.createElement('a');
+    registerLink.textContent = "Criar nova conta";
+    registerLink.href = "register.html";
+    registerLink.className = 'btn btn-link mt-2';
+    registerLink.style.textDecoration = 'none';
+
+    formulario.appendChild(registerLink);
+
     container.appendChild(titulo);
-    container.appendChild(formulario); //Nova div container, já dentro de divRoot, contém o form
+    container.appendChild(formulario);
+    divRoot.appendChild(container);
 }

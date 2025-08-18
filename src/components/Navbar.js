@@ -1,6 +1,5 @@
 export default function Navbar() {
     const navbar = document.createElement('div');
-    navbar.innerHTML =
         /*Incorporar os elementos HTML do bootstrap para navbar*/
         navbar.innerHTML = `
 
@@ -8,7 +7,7 @@ export default function Navbar() {
             <div class="container-fluid">
 
                 <a class "navbar-brand" href="">
-                    <img src = "../public/assets/images/logo.ibis.png" style = "width: 50px; height: 50px">
+                    <img src = "../public/assets/images/novotel.logo.webp" style = "width: 50px; height: 50px">
                         </a>
 
                 <a class="navbar-brand" href="#">Navbar</a>
@@ -44,7 +43,7 @@ export default function Navbar() {
                     </form>
                 </div>
             </div>
-        </nav>;`
+        </nav>`
 
         return navbar;
 
