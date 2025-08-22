@@ -1,61 +1,47 @@
-import Navbar from "../components/Navbar.js";
 import LoginForm from "../components/loginForm.js";
+import Navbar from "../components/Navbar.js";
 
 export default function renderRegisterPage() {
+    //Renderiza a navbar
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
     const navbar = Navbar();
     nav.appendChild(navbar);
 
-    const divRoot = document.getElementById('root');
-    divRoot.innerHTML = '';
+    //Obtém o fomrulário base de LoginForm
+    const loginFormContainer = LoginForm();
 
-    const titulo = document.createElement('h1');
-    titulo.textContent = 'Crie sua conta';
+    //Modifica o titulo
+    const titulo = loginFormContainer.querySelector ('h1');
+    titulo.textContent = 'Dont you have an account?';
+    titulo.textContent = 'Create your account!';
     titulo.className = 'titulo';
     titulo.style.textAlign = 'center';
 
-    const container = document.createElement('div');
-    container.className = 'card p-4 shadow-lg';
-    container.style.width = '100%';
-    container.style.maxWidth = '500px';
-
-    const formulario = LoginForm();
+    const formulario = loginFormContainer.querySelector('form');
+    const btnSubmit = loginFormContainer.querySelector('button');
+    btnSubmit.textContent = 'Register';
 
     // Adiciona o campo de 'Nome' antes do campo de e-mail
     const nome = document.createElement('input');
     nome.type = 'text';
-    nome.placeholder = "Digite seu nome";
+    nome.placeholder = "your name";
+    nome.className = 'form-control mb-3';
     nome.required = true;
-    formulario.prepend(nome);
+    formulario.insertBefore(nome, formulario.firstChild); //Coloca antes dentro do formulario, como nome em primeiro
 
     // Adiciona o campo 'Confirmar Senha' após o campo de senha
     const passwordConfirm = document.createElement('input');
     passwordConfirm.type = 'password';
-    passwordConfirm.placeholder = "Confirme sua senha";
+    passwordConfirm.placeholder = "Confirm your password";
     passwordConfirm.required = true;
-    formulario.insertBefore(passwordConfirm, formulario.querySelector('button[type="submit"]'));
-    
-    // Altera o texto do botão de 'Entrar' para 'Cadastrar'
-    const btnAuth = formulario.querySelector('button[type="submit"]');
-    btnAuth.textContent = 'Cadastrar';
+    formulario.insertBefore(passwordConfirm, btnSubmit); //coloca como ultimo o campo confirma senha
 
     // Cria e adiciona o link para a página de login
-    const backToLoginLink = document.createElement('a');
-    backToLoginLink.textContent = "Voltar ao Login";
-    backToLoginLink.href = "login.html";
-    backToLoginLink.className = 'btn btn-link mt-2';
-    backToLoginLink.style.textDecoration = 'none';
-
-    formulario.appendChild(backToLoginLink);
-
-    // Adiciona o evento de submit para prevenção de comportamento padrão
-    formulario.addEventListener('submit', (e) => {
-        e.preventDefault();
-        console.log('Formulário de cadastro enviado (dados não processados)');
-    });
-
-    container.appendChild(titulo);
-    container.appendChild(formulario);
-    divRoot.appendChild(container);
+    const btnVoltar = document.createElement('a');
+    btnVoltar.textContent = "Back to login";
+    btnVoltar.href = "#/login";
+    btnVoltar.className = 'btn btn-link mt-2';
+    btnVoltar.style.textDecoration = 'none';
+    formulario.appendChild(btnVoltar);
 }
