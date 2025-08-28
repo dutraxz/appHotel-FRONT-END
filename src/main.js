@@ -12,11 +12,12 @@ const routes = {
     //Novas páginas aqui adicionadas conforme desenvolvidas
 };
 
-//Obtém o caminho atual a partir do hash da URL
+//Obtém o caminho atual a partir do nome
 function getPath() {
-    //obetém o hash (ex. "#/login"), remove o # e tira espaços
-    const url = (location.hash || "").replace(/^#/, "").trim();
-    //retorna url se começar com "/", se não, retorna "/login" como padrão
+    //exem´plo: obetém  (/login)
+    const url = (location.pathname || "").replace("/siteVictor/", "/").trim();
+
+    //retorna url se começar com "/", se não, retorna "/home" como padrão
     return url && url.startsWith("/") ? url : "/home"; //retorna url limpa
 }
 
@@ -28,6 +29,6 @@ function renderRoutes() {
 }
 
 
-window.addEventListener("hashchange", renderRoutes);
+
 //Renderizaçõo
 document.addEventListener('DOMContentLoaded', renderRoutes);

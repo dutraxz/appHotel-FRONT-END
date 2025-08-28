@@ -6,18 +6,18 @@ export default function Navbar() {
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
 
-                <a class "navbar-brand" href="">
-                    <img src = "../public/assets/images/novotel.logo.webp" style = "width: 50px; height: 50px">
+                <a class ="navbar-brand" href="home">
+                    <img src ="public/assets/images/novotel.logo.webp" style = "width: 50px; height: 50px">
                         </a>
 
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#/home">Home</a>
+                            <a class="nav-link active" aria-current="page" href="home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
@@ -36,11 +36,11 @@ export default function Navbar() {
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#/register">Cadastre-se</a>
+                            <a class="nav-link" href="register">Register</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#/login">Login</a>
+                            <a class="nav-link" href="login">Login</a>
                         </li>
 
 
