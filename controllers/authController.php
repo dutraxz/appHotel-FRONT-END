@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../models/UserModel.php";
+require_once __DIR__ . "/../helpers/token_jwt.php";
 require_once "passwordController.php";
     
 class authController{
@@ -18,13 +19,8 @@ class authController{
             //Informações corretas
         $user = UserModel::validateUser($conn, $data['email'], $data['password']);
         if ($user){
-            return jsonResponse([
-        
-                "id"=>$user["id"],
-                "nome"=>$user["nome"],
-                "email"=>$user["email"],
-                "id_perm_fk"=>$user["Cargo"],
-            ]);
+            $token = createToken($user);
+            return jsonResponse([ "token" => $token ]);
 
             //Erro no Login
         }else{

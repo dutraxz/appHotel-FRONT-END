@@ -1,5 +1,7 @@
     import LoginForm from "../components/loginForm.js";
     import Navbar from "../components/Navbar.js";
+    import authAPI, { loginRequest } from "../api/authAPI.js";
+
 
     export default function renderLoginPage() {
         const nav = document.getElementById('navbar');
@@ -8,6 +10,11 @@
         nav.appendChild(navbar);
 
         const formulario = LoginForm();
+        const contentForm = formulario.querySelector('form');
+
+        const inputEmail = contentForm.querySelector('input[type="email"]');
+        const inputSenha = contentForm.querySelector('input[type="password"]');
+        const btn = contentForm.querySelector('button[type="submit"]');
     
         // Adiciona o link para a página de cadastro
         const btnVoltar = document.createElement('a');
@@ -17,5 +24,22 @@
         btnVoltar.style.textDecoration = 'none';
     
         formulario.appendChild(btnVoltar);
+
+        //Monitora o clique no botão para um evento submeter os dados do form
+        contentForm,addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = inputEmail.value.trim();
+            const senha = inputSenha.value.trim();
+        }
+        try{
+            const result = await loginRequest(email, senha);
+            console.log("login realizado com sucesso");
+            //window.location.pathname = /home
+        }
+        catch {
+            console.log("Erro inesperado!");
+        }
+
+
         
     }
