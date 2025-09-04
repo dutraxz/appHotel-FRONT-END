@@ -2,35 +2,56 @@
 
 
 class QuartoModel{
-
+    public static function criar($conn, $data){
+            $MYsql = "INSERT INTO quartos (nome, numero, camaSolteiro, camaCasal,
+            disponivel, preco) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($MYsql);
+            $stmt->bind_param("siiibd", $data["nome"],$data["numero"],$data["camaCasal"],
+                $data["camaSolteiro"],$data["disponivel"],$data["preco"]);
+            return $stmt->execute();
+    }
     public static function listarTodos($conn){
-        $sql = "usuarios.id, usuarios.email, usuarios.nome, usuarios.senha, permissao.nome AS Cargo
-        FROM usuarios 
-        JOIN permissao ON permissao.id = usuarios.id_perm_fk 
-        WHERE usuarios.email = ? ";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    
-    }
-
-    public static function buscarPorld($conn){
-
-    }
-
-    public static function criar($conn){
-        $sql INSET
-
-    }
-
-    public static function atualizar($conn){
-
-    }
-
-    public static function deletar($conn){
+        $MYsql = "SELECT * FROM quartos";
+        $result = $conn->query($MYsql);
+        return $result->fetch_all(MYSQLI_ASSOC);
         
     }
+    public static function buscarPorId($conn, $id){
+        $MYsql = "SELECT * FROM quartos WHERE id = ?";
+        $stmt = $conn->prepare($MYsql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+
+    }
+    public static function deletarQuarto($conn, $id){
+        $MYsql = "DELETE FROM quartos WHERE id = ?";
+        $stmt = $conn->prepare($MYsql);
+        $stmt->bind_param("i", $id);
+        return$stmt->execute();
+
+    
+        
+    }
+
+ 
+
+    public static function atualizarQuarto($conn, $id, $data){
+         $MYsql = "UPDATE quartos SET nome = ?, numero = ?, camaSolteiro = ?, camaCasal = ?, disponivel = ?, preco = ? WHERE id = ?";
+            $stmt = $conn->prepare($MYsql);
+            $stmt->bind_param("siiibdi",
+            $data["nome"],
+            $data["numero"],
+            $data["camaCasal"],
+            $data["camaSolteiro"],
+            $data["disponivel"],
+            $data["preco"],
+            $id
+        );
+        return $stmt->execute();
+
+    }
+
     
     public static function buscarDisponiveis($conn){
         
