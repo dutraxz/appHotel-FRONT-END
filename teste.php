@@ -10,16 +10,18 @@
     //];
 
 
-    $data = [
-        "nome" => "Quarto Vitera",
-        "numero" => 5,
-        "camaSolteiro" => 310,
-        "camaCasal" => 0,
-        "disponivel" => 1,
-        "preco" => 200900
-    ];
+    //$data = [
+
+    //    "nome" => "Quarto Vitera",
+    //    "numero" => 5,
+    //    "camaSolteiro" => 310,
+    //    "camaCasal" => 0,
+    //    "disponivel" => 1,
+    //    "preco" => 200900
+    //];
     
-    QuartoController::atualizarQuarto($conn, $id = 4, $data);
+
+    //QuartoController::atualizarQuarto($conn, $id = 4, $data);
     //QuartoController::criar($conn, $data);
 
 
@@ -38,9 +40,9 @@
     
     //echo passWordController::generateHash($data['password']);
 
-    //$hash = '$2y$10$yTQ9oCnWXqq.W1dMaDariu67Xzw.V9jiRjnciolSmPaxarwG/RvKG';
+   //$hash = '$2y$10$yTQ9oCnWXqq.W1dMaDariu67Xzw.V9jiRjnciolSmPaxarwG/RvKG';
+   //echo passWordController::validateHash($data['password'], $hash);
 
     //echo "<br>";
 
-    //echo passWordController::validateHash($data['password'], $hash);
 ?>  

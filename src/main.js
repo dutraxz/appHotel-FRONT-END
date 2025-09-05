@@ -2,7 +2,6 @@ import renderHomePage from './pages/home.js';
 import renderLoginPage from './pages/login.js';
 import renderRegisterPage from './pages/register.js';
 
-
 //Configuração de rotas
 const routes = {
 

@@ -7,7 +7,7 @@ export default function Navbar() {
             <div class="container-fluid">
 
                 <a class ="navbar-brand" href="home">
-                    <img src ="public/assets/images/novotel.logo.webp" style = "width: 50px; height: 50px">
+                    <img src ="public/assets/images/novotel.logo.webp" style = "width: 100px; height: 10    0px">
                         </a>
 
                 <a class="navbar-brand" href="#"></a>
@@ -20,7 +20,7 @@ export default function Navbar() {
                             <a class="nav-link active" aria-current="page" href="home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="#footer">Sobresdfsd</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,6 +34,9 @@ export default function Navbar() {
                             </ul>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="footer">Sobre</a>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="register">Register</a>

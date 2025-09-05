@@ -1,11 +1,14 @@
 export async function loginRequest(email, senha){
-    const response = await fetch("/api/login", {
+    const dados = {email, password: senha};
+    const response = await fetch("api/login", {
         method: "POST",
         headers: {
             "Accept": "application/json",
-            "Content-type": "application/x-www-form-urlencoded;charset=UTF-8"
+            "Content-type": "application/json"
         },
-        body: new URLSearchParams({ email, senha }).toString(),
+        body: JSON.stringify(dados),
+        //body: new URLSearchParams({ "email":email , "password":senha }).toString(),
+        
         /*URL da requisiçao é a mesma da origem dp front(mesmo protocolo http/mesmo dominio
         local/mesma porta 80 do servidoer web apache)
         Front: http://localhost/primesite/public/index.html
@@ -23,11 +26,31 @@ export async function loginRequest(email, senha){
         // Se nao for JSON valido, data permanece null
         data = null;
     }
+
+    if(!data || !data.token){
+        const message = "Resposta inváliada do servidor. Token ausente";
+        return {ok: false, token: null, raw: data, message};
+    }
  
     return {
         ok: true,
-        user: data.user ?? null,
+        token: data.token,
         raw: data
-    }
+    };
 }
+    /*Função para salvar a chave do token após a autenticação conrfirmada,
+    ao salvar no local storage, o usuário poderá mudar de página, fechar
+    o site e ainda assim permanecer logado, DESDE QUE O TEMPO NÃO TENHA EXPIRADO (1hr)*/
+export function saveToken(token) {
+    localStorage.setItem("auth_token", token);
+}
+/*Recuperar a chave de cada página que o usuário navegar*/
+export function getToken() {
+    localStorage.getItem("auth_token");
+}
+/*Funcção para remover a chave de token quando o usuário deslogar*/
+export function cleanToken() {
+    localStorage.removetItem("auth_token");
+}
+
  
