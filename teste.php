@@ -4,10 +4,10 @@
     require_once __DIR__ . "/helpers/token_jwt.php";
     require_once __DIR__ . "/controllers/passwordController.php";
 
-    //$data = [
-        //"email"=>"victorED@gmail.com",
-        //"password"=>'vicEDU'
-    //];
+    $data = [
+        "email"=>"victorED@gmail.com",
+        "password"=>'vicEDU'
+    ];
 
 
     //$data = [

@@ -1,6 +1,7 @@
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
+import RoomCard from "../components/RommCard.js";
 
     export default function renderHomePage() {
         const nav = document.getElementById('navbar');
@@ -17,9 +18,14 @@ import Footer from "../components/Footer.js";
 
         const rodape = document.getElementById('rodape');
         rodape.innerHTML = '';
+
         const footer = Footer();
         rodape.appendChild(footer);
+
+        const room = RoomCard();
+        divRoot.appendChild(room);
         
+       
 
         
     

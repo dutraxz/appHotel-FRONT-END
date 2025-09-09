@@ -16,7 +16,7 @@ function createToken($user){
 }
 function validateToken($token){
     try{
-        $key = new Key(SECRET_KEY, "HS2546");
+        $key = new Key(SECRET_KEY, "HS256");
         $decode = JWT::decode($token, $key);
         return $decode->sub;
         

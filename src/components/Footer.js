@@ -46,11 +46,11 @@ export default function Footer() {
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
+            <i class="fas fa-gem me-3"></i>N O V O T E L
           </h6>
           <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
+            Proporcionamos uma experiência incrivel e encantadora para todos nossos clientes.
+            Venha conhecer um pouco mais sobre a gente! ->
           </p>
         </div>
         <!-- Grid column -->
@@ -59,19 +59,19 @@ export default function Footer() {
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
-            Products
+          Universo NOVOTEL
           </h6>
           <p>
-            <a href="#!" class="text-reset">Angular</a>
+            <a href="#!" class="text-reset">Quem somos?</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">React</a>
+            <a href="#!" class="text-reset">Localizações</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Vue</a>
+            <a href="#!" class="text-reset">Empresas Parceiras</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Laravel</a>
+            <a href="#!" class="text-reset">Nossos Produtos</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -80,19 +80,19 @@ export default function Footer() {
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
-            Useful links
+            Conheça sobre a gente
           </h6>
           <p>
-            <a href="#!" class="text-reset">Pricing</a>
+            <a href="#!" class="text-reset">Instagram</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Settings</a>
+            <a href="#!" class="text-reset">Facebook</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Orders</a>
+            <a href="#!" class="text-reset">Hotéis</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Help</a>
+            <a href="#!" class="text-reset">Ajuda</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -100,14 +100,14 @@ export default function Footer() {
         <!-- Grid column -->
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <h6 class="text-uppercase fw-bold mb-4">Contatos</h6>
+          <p><i class="fas fa-home me-3"></i> Sorocaba, SP - 18034-009, BR </p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            novotel@outlook.com
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          <p><i class="fas fa-phone me-3"></i> +55 15 56788-009</p>
+          <p><i class="fas fa-print me-3"></i> +55 15 56789-009</p>
         </div>
         <!-- Grid column -->
       </div>
@@ -117,9 +117,9 @@ export default function Footer() {
   <!-- Section: Links  -->
 
   <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  <div class="text-center p-4" style="background-color: rgba(255, 0, 0, 0.05);">
+    © 2025 Copyright - Direitos Reservados:
+    <a class="text-reset fw-bold" href="https://novotel.com.br/">novotel.com.br</a>
   </div>
   <!-- Copyright -->
 </footer>

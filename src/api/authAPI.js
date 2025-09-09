@@ -1,5 +1,5 @@
-export async function loginRequest(email, senha){
-    const dados = {email, password: senha};
+export async function loginRequest(email, password){
+    const dados = {email, password};
     const response = await fetch("api/login", {
         method: "POST",
         headers: {
@@ -36,7 +36,7 @@ export async function loginRequest(email, senha){
         ok: true,
         token: data.token,
         raw: data
-    };
+    }
 }
     /*Função para salvar a chave do token após a autenticação conrfirmada,
     ao salvar no local storage, o usuário poderá mudar de página, fechar

@@ -22,15 +22,15 @@ export default function renderLoginPage() {
     contentForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const email = inputEmail.value.trim();
-        const senha = inputSenha.value.trim();
+        const password = inputSenha.value.trim();
 
         try {
-            const result = await loginRequest(email, senha);
+            const result = await loginRequest(email, password);
             console.log("login realizado com sucesso", result);
             saveToken(result.token);
             window.location.pathname = "/siteVictor/home";
         }
-        catch {
+        catch{
             console.log("Erro inesperado!");
         }
     });
@@ -40,5 +40,5 @@ export default function renderLoginPage() {
     btnVoltar.href = "register";
     btnVoltar.className = 'btn btn-link mt-2';
     btnVoltar.style.textDecoration = 'none';
-    formulario.appendChild(btnVoltar)
+    formulario.appendChild(btnVoltar);
 }
