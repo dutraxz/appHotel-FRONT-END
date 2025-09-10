@@ -30,7 +30,7 @@ class QuartoController{
             return jsonResponse(['message' => "Quarto deletado com sucesso"]);
         }
         else{
-        return jsonResponse(['message' => "Erro ao deletar Quarto"]);
+        return jsonResponse(['message' => "Erro ao deletar Quarto"], 400);
         }
     }
 

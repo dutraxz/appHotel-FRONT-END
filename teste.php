@@ -21,7 +21,9 @@
     //];
     
 
-    //QuartoController::atualizarQuarto($conn, $id = 4, $data);
+    // QuartoController::atualizarQuarto($conn, $id = 4, $data);
+    // QuartoController::deletar($conn, $id = 4, $data);
+    //QuartoController::listarTodos($conn, $id = 6);
     //QuartoController::criar($conn, $data);
 
 
