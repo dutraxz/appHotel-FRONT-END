@@ -1,9 +1,8 @@
 export default function Hero() {
   const hero = document.createElement('div');
-  hero.className = 'hero w-100'
-
+  hero.className = 'hero w-100 d-flex justify-content-center';
   hero.innerHTML = `
-  <div class = "hero-frame rounded-4 shadow w-100"> 
+  <div class = "hero-frame w-100"> 
   <div id="carouselExampleIndicators" class="carousel slide">
 
   <div class="carousel-indicators">
@@ -11,9 +10,10 @@ export default function Hero() {
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
-  <div class="carousel-inner">
+
+  <div class="carousel-inner shadow">
     <div class="carousel-item active">
-      <img src="public/assets/images/hotel1.png" class="d-block w-10" alt="">
+      <img src="public/assets/images/hotel1.png" class="d-block w-100" alt="">
     </div>
     <div class="carousel-item">
       <img src="public/assets/images/hotelnovo.jpg" class="d-block w-100" alt="...">

@@ -2,6 +2,7 @@ import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 import RoomCard from "../components/RommCard.js";
+import DateSelector from "../components/DateSelector.js";
 
     export default function renderHomePage() {
         const nav = document.getElementById('navbar');
@@ -24,6 +25,9 @@ import RoomCard from "../components/RommCard.js";
 
         const room = RoomCard();
         divRoot.appendChild(room);
+
+        const container = DateSelector();
+        divRoot.appendChild(container)
         
        
 

@@ -7,7 +7,7 @@ export default function Navbar() {
             <div class="container-fluid">
 
                 <a class ="navbar-brand" href="home">
-                    <img src ="public/assets/images/novotel.logo.webp" style = "width: 100px; height: 50Ppx">
+                    <img src ="public/assets/images/novotel.logo.webp" style = "width: 90px; height: 90px">
                         </a>
 
                 <a class="navbar-brand" href="#"></a>
