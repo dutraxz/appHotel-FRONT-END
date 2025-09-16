@@ -16,13 +16,13 @@ export default function RoomCard() {
 
   <div class="carousel-inner shadow">
     <div class="carousel-item active">
-      <img src="public/assets/images/fundohotel.png" class="d-block w-100" alt="">
+      <img src="public/assets/images/quartoazul.jpg" class="d-block w-100" alt="">
     </div>
     <div class="carousel-item">
-      <img src="public/assets/images/fundohotel3.jpg" class="d-block w-100" alt="...">
+      <img src="public/assets/images/quartoazul1.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="public/assets/images/fundohotel4.jpg" class="d-block w-100" alt="...">
+      <img src="public/assets/images/quartoazul2.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide="prev">

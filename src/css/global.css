@@ -22,12 +22,10 @@
 
 #root {
     flex-direction: column;
+    gap: 25vh;
+    padding-bottom: 10vh;
     border-radius: 20px;
-    margin-top: 20px;
-    position: relative;
-    margin-left: 10px;
 }
-
 
  .btn-primary:hover{
     background-color: rgb(rgb(107, 2, 2));
@@ -55,4 +53,12 @@
     .hero {
         height: 60vh;
     }
+}
+
+.card{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+    gap: 15px;
 }

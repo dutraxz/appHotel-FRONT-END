@@ -26,17 +26,18 @@ import DateSelector from "../components/DateSelector.js";
 
         const footer = Footer();
         rodape.appendChild(footer);
-
-        for( room, RoomCard = 2, ++ {
-        const room = RoomCard();
-        divRoot.appendChild(room))
-    }
-
+        
         const container = DateSelector();
-        divRoot.appendChild(container)
         
-       
+        
+        const cardGroup = document.createElement('div');
+        cardGroup.className = "card";
+        
+        for(var i = 0; i < 3; i++) {
+            const card = RoomCard();
+            cardGroup.appendChild(card);
+        }
+        
+        divRoot.appendChild(cardGroup);
 
-        
-    
     }
