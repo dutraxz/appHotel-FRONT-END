@@ -39,7 +39,7 @@ input:focus {
     transform: translateX(-50%);
     width: 60px; /* Largura do sublinhado */
     height: 3px;
-    background-color: #007bff; /* Cor do sublinhado, um azul vibrante */
+    background-color: #0056b3; /* Cor do sublinhado, um azul vibrante */
     border-radius: 5px;
 }
 
@@ -50,7 +50,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"] {
     border-radius: 5px;
-    border: 1px solid #0080ff;
+    border: 1px solid #ffffff;
     transition: all 0.3s ease; /* Transição suave para o foco */
     padding: 10px 15px;
 }
@@ -59,7 +59,7 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
-    border-color: #007bff; /* Borda azul ao focar */
+    border-color: #ffffff; /* Borda azul ao focar */
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra de foco azul */
 }
 

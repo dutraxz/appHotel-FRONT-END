@@ -5,12 +5,14 @@ import RoomCard from "../components/RommCard.js";
 import DateSelector from "../components/DateSelector.js";
 
     export default function renderHomePage() {
+        //Navbar
         const nav = document.getElementById('navbar');
         nav.innerHTML = '';
         const navbar = Navbar();
         nav.appendChild(navbar);
 
         // Adiciona o link para a página de cadastro
+        //Root - corpo da pagina
         const divRoot = document.getElementById('root');
         root.innerHTML = '';
 
@@ -20,11 +22,15 @@ import DateSelector from "../components/DateSelector.js";
         const rodape = document.getElementById('rodape');
         rodape.innerHTML = '';
 
+        //Footer
+
         const footer = Footer();
         rodape.appendChild(footer);
 
+        for( room, RoomCard = 2, ++ {
         const room = RoomCard();
-        divRoot.appendChild(room);
+        divRoot.appendChild(room))
+    }
 
         const container = DateSelector();
         divRoot.appendChild(container)

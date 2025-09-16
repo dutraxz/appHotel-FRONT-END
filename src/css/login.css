@@ -2,19 +2,19 @@
 
 input{
     border-style: solid ;
-    border-color: rgb(0, 89, 255);
+    border-color: rgb(255, 255, 255);
     border-radius: 10px;
     margin-bottom: 15px;
 }
 input:focus {
     outline: none;
-    border: 2px solid rgb(0, 89, 255);
+    border: 2px solid rgb(255, 255, 255);
 
 }
 
 .btn-primary:hover{
-    background-color: rgb(43, 90, 143);
-    border-color: rgb(50, 90, 153);
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
 }
 /* Remove a borda do card */
 /* .card {
@@ -51,7 +51,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"] {
     border-radius: 5px;
-    border: 1px solid #0080ff;
+    border: 1px solid #ffffff;
     transition: all 0.3s ease; /* Transição suave para o foco */
     padding: 10px 15px;
 }
@@ -60,8 +60,8 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
-    border-color: #007bff; /* Borda azul ao focar */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra de foco azul */
+    border-color: #ffffff; /* Borda azul ao focar */
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25); /* Sombra de foco azul */
 }
 
 /* src/css/register.css */

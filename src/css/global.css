@@ -1,25 +1,38 @@
-
 .titulo {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 700;
+    font-weight: 200;
     font-style: normal;
     font-size: 25px;
     margin-bottom: 30px;
 }
- 
+
 .btn {
     font-family: "Inter", sans-serif;
     font-weight: 500;
     font-style: normal;
     font-size: 15px;
 }
- 
+
+.navbar{
+    position:fixed;
+    width: 60px; /* Largura do sublinhado */
+    height: 3px;
+}
+
 #root {
     flex-direction: column;
-
+    border-radius: 20px;
+    margin-top: 20px;
+    position: relative;
+    margin-left: 10px;
 }
- 
+
+
+ .btn-primary:hover{
+    background-color: rgb(rgb(107, 2, 2));
+    border-color: rgb(rgb(160, 7, 7));
+ }
 /*hero section*/
 .hero-frame {
     overflow: hidden;
@@ -31,10 +44,8 @@
     /*Aplica propriedade cover para recortar parte da imagem (e não distorcê-lá,
     definindo seu ponto de foco a partir da propriedade object-position*/
     /*centraliza o recorte da imagem*/
-    height: 59vh;
-    object-fit: cover;
-
-    
+    height: 70vh;
+    border-radius: 5px;
 }
  
 /*Responsividade media-query*/
@@ -42,6 +53,6 @@
  
     .hero img,
     .hero {
-        height: 50vh;
+        height: 60vh;
     }
 }

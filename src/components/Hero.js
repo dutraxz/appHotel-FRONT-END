@@ -13,21 +13,21 @@ export default function Hero() {
 
   <div class="carousel-inner shadow">
     <div class="carousel-item active">
-      <img src="public/assets/images/hotel1.png" class="d-block w-100" alt="">
+      <img src="public/assets/images/fundohotel2.jpg" class="d-block w-100" alt="">
     </div>
     <div class="carousel-item">
-      <img src="public/assets/images/hotelnovo.jpg" class="d-block w-100" alt="...">
+      <img src="public/assets/images/fundohotel3.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="public/assets/images/capahotel2.jpg" class="d-block w-100" alt="...">
+      <img src="public/assets/images/fundohotel4.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
   </div>
