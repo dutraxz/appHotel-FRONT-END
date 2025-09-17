@@ -1,19 +1,23 @@
 <?php
-class AdicionalModel {
+
+
+class ClienteModel{
     public static function criar($conn, $data){
-            $MYsql = "INSERT INTO adicionais (nome, preco) VALUES (?, ?)";
+            $MYsql = "INSERT INTO clientes (nome, email, cpf, telefone,
+            senha, id_cargo_fk) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("sd", $data["nome"],$data["preco"]);
+            $stmt->bind_param("sssssi", $data["nome"], $data["email"], $data["cpf"],
+            $data["telefone"], $data["senha"], $data["id_cargo_fk"]);
             return $stmt->execute();
     }
     public static function listarTodos($conn){
-        $MYsql = "SELECT * FROM adicionais";
+        $MYsql = "SELECT * FROM clientes";
         $result = $conn->query($MYsql);
         return $result->fetch_all(MYSQLI_ASSOC);
         
     }
     public static function buscarPorId($conn, $id){
-        $MYsql = "SELECT * FROM adicionais WHERE id = ?";
+        $MYsql = "SELECT * FROM clientes WHERE id = ?";
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -21,7 +25,7 @@ class AdicionalModel {
 
     }
     public static function deletar($conn, $id){
-        $MYsql = "DELETE FROM adicionais WHERE id = ?";
+        $MYsql = "DELETE FROM clientes WHERE id = ?";
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
@@ -29,15 +33,24 @@ class AdicionalModel {
     }
 
     public static function atualizar($conn, $id, $data){
-         $MYsql = "UPDATE adicionais SET nome = ?, preco = ? WHERE id = ?";
+         $MYsql = "UPDATE clientes SET nome = ?, email = ?, cpf = ?, telefone = ?, senha = ?, id_cargo_fk = ? WHERE id = ?";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("sd",
+            $stmt->bind_param("sssssi",
             $data["nome"],
-            $data["preco"],
+            $data["email"],
+            $data["cpf"],
+            $data["telefone"],
+            $data["senha"],
+            $data["id_cargo_fk"],
             $id
         );
         return $stmt->execute();
 
+    }
+
+    
+    public static function buscarDisponiveis($conn){
+        
     }
 
 

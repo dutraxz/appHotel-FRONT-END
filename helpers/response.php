@@ -6,6 +6,4 @@ function jsonResponse($data, $status=200){
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
     exit;
 }
-
-
 ?>

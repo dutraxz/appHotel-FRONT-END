@@ -1,19 +1,21 @@
 <?php
-class AdicionalModel {
+
+
+class PermissaoModel{
     public static function criar($conn, $data){
-            $MYsql = "INSERT INTO adicionais (nome, preco) VALUES (?, ?)";
+            $MYsql = "INSERT INTO permissao (nome) VALUES (?)";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("sd", $data["nome"],$data["preco"]);
+            $stmt->bind_param("i", $data["nome"]);
             return $stmt->execute();
     }
     public static function listarTodos($conn){
-        $MYsql = "SELECT * FROM adicionais";
+        $MYsql = "SELECT * FROM permissao";
         $result = $conn->query($MYsql);
         return $result->fetch_all(MYSQLI_ASSOC);
         
     }
     public static function buscarPorId($conn, $id){
-        $MYsql = "SELECT * FROM adicionais WHERE id = ?";
+        $MYsql = "SELECT * FROM permissao WHERE id = ?";
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -21,7 +23,7 @@ class AdicionalModel {
 
     }
     public static function deletar($conn, $id){
-        $MYsql = "DELETE FROM adicionais WHERE id = ?";
+        $MYsql = "DELETE FROM permissao WHERE id = ?";
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
@@ -29,15 +31,19 @@ class AdicionalModel {
     }
 
     public static function atualizar($conn, $id, $data){
-         $MYsql = "UPDATE adicionais SET nome = ?, preco = ? WHERE id = ?";
+         $MYsql = "UPDATE permissao SET nome = ? WHERE id = ?";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("sd",
+            $stmt->bind_param("s",
             $data["nome"],
-            $data["preco"],
             $id
         );
         return $stmt->execute();
 
+    }
+
+    
+    public static function buscarDisponiveis($conn){
+        
     }
 
 

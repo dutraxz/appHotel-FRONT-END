@@ -20,12 +20,12 @@ class QuartoController{
     }
 
     public static function buscarPorId($conn, $id){
-        $BuscarId = QuartoModel::buscarPorId($conn, $id);
-        return jsonResponse($BuscarId);
+        $buscarId = QuartoModel::buscarPorId($conn, $id);
+        return jsonResponse($buscarId);
     }
 
-    public static function deletarQuarto($conn, $id){
-        $result = QuartoModel::deletarQuarto($conn, $id);
+    public static function deletar($conn, $id){
+        $result = QuartoModel::deletar($conn, $id);
         if($result){
             return jsonResponse(['message' => "Quarto deletado com sucesso"]);
         }
@@ -34,8 +34,8 @@ class QuartoController{
         }
     }
 
-    public static function atualizarQuarto($conn, $id, $data){
-        $result = QuartoModel::atualizarQuarto($conn, $id, $data);
+    public static function atualizar($conn, $id, $data){
+        $result = QuartoModel::atualizar($conn, $id, $data);
         if($result){
             return jsonResponse(['message' => "Informações do Quarto atualizadas com sucesso"]);
         }
