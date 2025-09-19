@@ -1,64 +1,66 @@
 .titulo {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
     font-style: normal;
     font-size: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .btn {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
+    font-family: "Latso", sans-serif;
+    font-weight: 700;
     font-style: normal;
-    font-size: 15px;
+    font-size: 17px;
 }
 
-.navbar{
-    position:fixed;
-    width: 60px; /* Largura do sublinhado */
-    height: 3px;
+input {
+    border-style: solid;
+    border-color: rgb(117, 171, 233);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(3, 65, 136);
+    border-color: rgb(3, 65, 136);
 }
 
 #root {
     flex-direction: column;
-    gap: 25vh;
+    gap: 10vh;
     padding-bottom: 10vh;
-    border-radius: 20px;
+    background-color: rgba(243, 242, 242, 0.87);
 }
 
- .btn-primary:hover{
-    background-color: rgb(rgb(107, 2, 2));
-    border-color: rgb(rgb(160, 7, 7));
- }
-/*hero section*/
+/*Hero Section*/
 .hero-frame {
-    overflow: hidden;
-    /*impede que a imagem vaze do quadro*/
+    overflow: hidden; /*Impede que a imagem vaze do quadro*/
 }
- 
-.hero img,
-.hero {
-    /*Aplica propriedade cover para recortar parte da imagem (e não distorcê-lá,
-    definindo seu ponto de foco a partir da propriedade object-position*/
-    /*centraliza o recorte da imagem*/
+
+.hero img, .hero {
+   /* Aplica propriedade cover para recortar parte da imagem (e não distorcê-la),
+   definindo seu ponto de foco a partir da propriedade object-position*/
+    object-fit: cover;
+    object-position: center;
     height: 70vh;
-    border-radius: 5px;
 }
- 
+
 /*Responsividade media-query*/
 @media (max-width: 576px) {
- 
-    .hero img,
-    .hero {
-        height: 60vh;
+    .hero img, .hero {
+        height: 50vh;
     }
 }
 
-.card{
-    flex-direction: column;
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+.divDate{
     display: flex;
     justify-content: center;
-    align-items: first baseline;
     gap: 15px;
 }

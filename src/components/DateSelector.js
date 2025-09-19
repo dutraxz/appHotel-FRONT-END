@@ -1,44 +1,40 @@
 export default function DateSelector() {
-    const container = document.createElement("div");
-    container.className = "search-bar";
+    const divDate = document.createElement("div");
+    divDate.className = "divDate";
 
     // Campo de destino (hotel/quarto)
-    const inputDestino = document.createElement("input");
-    inputDestino.type = "text";
-    inputDestino.placeholder = "Ver";
-    inputDestino.className = "search-input";
+    const dataCheckIn = document.createElement('input');
+    dataCheckIn.type = "date";
+    dataCheckIn.className = 'card p-3 shadow-lg inputDate';
 
     // Campo de datas
-    const inputDatas = document.createElement("input");
-    inputDatas.type = "text";
-    inputDatas.placeholder = "Data de check-in - checkout";
-    inputDatas.className = "search-input";
+    const dataCheckOut = document.createElement('input');
+    dataCheckOut.type = "date";
+    dataCheckOut.className = "card p-3 shadow-lg inputDate";
 
     // Campo de hóspedes
-    const inputHospedes = document.createElement("input");
-    inputHospedes.type = "text";
-    inputHospedes.value = "2 adultos · 0 criança · 1 cômodo";
-    inputHospedes.readOnly = true;
-    inputHospedes.className = "search-input";
+    const guestAmount = document.createElement('select');
+    guestAmount.className = "search-input";
+    guestAmount.innerHTML =
+    `
+    <option value"">Quantas Pessoas?</option>
+    <option value"1">1 Quantas Pessoas?</option>
+    <option value"2">2 Quantas Pessoas?</option>
+    <option value"3">3 Quantas Pessoas?</option>
+    <option value"4">4 Quantas Pessoas?</option>
+    <option value"5">5 ou mais pessoas?</option>
+    `;
 
-    // Botão de pesquisa
-    const btnPesquisar = document.createElement("button");
-    btnPesquisar.textContent = "Pesquisar";
-    btnPesquisar.className = "btn-pesquisar";
-
-    btnPesquisar.addEventListener("click", () => {
-        console.log("🔎 Pesquisando com dados:", {
-            destino: inputDestino.value,
-            datas: inputDatas.value,
-            hospedes: inputHospedes.value,
-        });
-    });
+    const btnSearchRoom = document.createElement('buttom');
+    btnSearchRoom.type = 'submit';
+    btnSearchRoom.textContent = 'Pesquisar';
+    btnSearchRoom.className = 'btn btn-primary';
 
     // Montagem
-    container.appendChild(inputDestino);
-    container.appendChild(inputDatas);
-    container.appendChild(inputHospedes);
-    container.appendChild(btnPesquisar);
+    divDate.appendChild(dataCheckIn);
+    divDate.appendChild(dataCheckOut);
+    divDate.appendChild(guestAmount);
+    divDate.appendChild(btnSearchRoom);
 
-    return container;
+    return divDate;
 }

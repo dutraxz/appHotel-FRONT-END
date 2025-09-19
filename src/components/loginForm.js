@@ -1,7 +1,7 @@
 export default function LoginForm() {
-
-
     const divRoot = document.getElementById('root');
+    divRoot.style.alignItems = "center";
+    divRoot.style.height = "100vh";
 
     //cria o container do card
     const container = document.createElement('div');
@@ -13,8 +13,8 @@ export default function LoginForm() {
     //adiciona o titulo
     const titulo = document.createElement('h1');
     titulo.textContent = 'Log in ';
-    titulo.className = 'titulo text-center mb-4';
-    container.appendChild(titulo);
+    titulo.className = 'titulo';
+    
     
     //cria o formulario
     const formulario = document.createElement('form');
@@ -38,7 +38,8 @@ export default function LoginForm() {
     btn.textContent = "To enter!";
     btn.className = 'btn btn-primary';
 
-    formulario.appendChild(btn); 
+    formulario.appendChild(btn);
+    container.appendChild(titulo); 
     container.appendChild(formulario);
     
     return container;//retorna o container com todo conteudo

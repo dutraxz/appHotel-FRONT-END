@@ -41,6 +41,7 @@ require_once __DIR__ . "/controllers/passwordController.php";
     // ClienteController::atualizar($conn, $id = 4, $data);
     // ClienteController::deletar($conn, $id = 4, $data);
     // ClienteController::listarTodos($conn, $id = 6);
+    //ClienteController::criar($conn, $data);
     
     $data = [
         
@@ -52,7 +53,6 @@ require_once __DIR__ . "/controllers/passwordController.php";
         "id_cargo_fk" => 2 
     ];
     
-    ClienteController::criar($conn, $data);
 
     // - - - Reservas - - -
 

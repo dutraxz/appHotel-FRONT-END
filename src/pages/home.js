@@ -23,21 +23,22 @@ import DateSelector from "../components/DateSelector.js";
         rodape.innerHTML = '';
 
         //Footer
-
         const footer = Footer();
         rodape.appendChild(footer);
+
+         const dateSelector = DateSelector();
+        divRoot.appendChild(dateSelector);
         
-        const container = DateSelector();
-        
-        
-        const cardGroup = document.createElement('div');
-        cardGroup.className = "card";
+        const cardsGroup = document.createElement('div');
+        cardsGroup.className = "cards";
         
         for(var i = 0; i < 3; i++) {
-            const card = RoomCard();
-            cardGroup.appendChild(card);
+            const cards = RoomCard(i);
+            cardsGroup.appendChild(cards);
         }
         
-        divRoot.appendChild(cardGroup);
+        divRoot.appendChild(cardsGroup);
+
+       
 
     }
