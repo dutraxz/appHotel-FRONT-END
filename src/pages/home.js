@@ -18,11 +18,10 @@ import DateSelector from "../components/DateSelector.js";
 
         const hero = Hero();
         divRoot.appendChild(hero);
-
+        
+        //Footer
         const rodape = document.getElementById('rodape');
         rodape.innerHTML = '';
-
-        //Footer
         const footer = Footer();
         rodape.appendChild(footer);
 

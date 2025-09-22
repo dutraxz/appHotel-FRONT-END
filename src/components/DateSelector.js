@@ -14,7 +14,7 @@ export default function DateSelector() {
 
     // Campo de hóspedes
     const guestAmount = document.createElement('select');
-    guestAmount.className = "search-input";
+    guestAmount.className = "search-input ";
     guestAmount.innerHTML =
     `
     <option value"">Quantas Pessoas?</option>
