@@ -29,9 +29,9 @@ class AdicionalModel {
     }
 
     public static function atualizar($conn, $id, $data){
-         $MYsql = "UPDATE adicionais SET nome = ?, preco = ? WHERE id = ?";
+            $MYsql = "UPDATE adicionais SET nome = ?, preco = ? WHERE id = ?";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("sd",
+            $stmt->bind_param("sdi",
             $data["nome"],
             $data["preco"],
             $id

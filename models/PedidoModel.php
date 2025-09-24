@@ -3,9 +3,9 @@
 
 class PedidoModel{
     public static function criar($conn, $data){
-            $MYsql = "INSERT INTO pedidos (id_usuario_fk, id_cliente_fk, data, pagamento) VALUES (?, ?, ?, ?)";
+            $MYsql = "INSERT INTO pedidos (id_usuario_fk, id_cliente_fk, pagamento) VALUES (?, ?, ?)";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("iii", $data["id_usuario_fk"],$data["id_cliente_fk"],$data["data"], $data["pagamento"]);
+            $stmt->bind_param("iis", $data["id_usuario_fk"], $data["id_cliente_fk"], $data["pagamento"]);
             return $stmt->execute();
     }
     public static function listarTodos($conn){
@@ -31,12 +31,11 @@ class PedidoModel{
     }
 
     public static function atualizar($conn, $id, $data){
-         $MYsql = "UPDATE pedidos SET id_usuario_fk = ?, id_cliente_fk = ?, data = ?, pagamento = ? WHERE id = ?";
+         $MYsql = "UPDATE pedidos SET id_usuario_fk = ?, id_cliente_fk = ?, pagamento = ? WHERE id = ? ";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("iii",
+            $stmt->bind_param("iis",
             $data["id_usuario_fk"],
             $data["id_cliente_fk"],
-            $data["data"],
             $data["pagamento"],
             $id
         );

@@ -33,9 +33,9 @@ class ClienteModel{
     }
 
     public static function atualizar($conn, $id, $data){
-         $MYsql = "UPDATE clientes SET nome = ?, email = ?, cpf = ?, telefone = ?, senha = ?, id_cargo_fk = ? WHERE id = ?";
+         $MYsql = "UPDATE clientes SET nome = ?, email = ?, cpf = ?, telefone = ?, senha = ?, id_cargo_fk = ? WHERE id = ? ";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("sssssi",
+            $stmt->bind_param("sssssii",
             $data["nome"],
             $data["email"],
             $data["cpf"],

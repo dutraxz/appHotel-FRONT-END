@@ -5,7 +5,7 @@ class PermissaoModel{
     public static function criar($conn, $data){
             $MYsql = "INSERT INTO permissao (nome) VALUES (?)";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("i", $data["nome"]);
+            $stmt->bind_param("s", $data["nome"]);
             return $stmt->execute();
     }
     public static function listarTodos($conn){
@@ -33,7 +33,7 @@ class PermissaoModel{
     public static function atualizar($conn, $id, $data){
          $MYsql = "UPDATE permissao SET nome = ? WHERE id = ?";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("s",
+            $stmt->bind_param("si",
             $data["nome"],
             $id
         );

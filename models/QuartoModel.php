@@ -6,7 +6,7 @@ class QuartoModel{
             $MYsql = "INSERT INTO quartos (nome, numero, camaSolteiro, camaCasal,
             disponivel, preco) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("ssiibdi", $data["nome"], $data["numero"], $data["camaCasal"],
+            $stmt->bind_param("ssiibd", $data["nome"], $data["numero"], $data["camaCasal"],
             $data["camaSolteiro"], $data["disponivel"], $data["preco"]);
             return $stmt->execute();
     }
@@ -25,7 +25,7 @@ class QuartoModel{
 
     }
     public static function deletar($conn, $id){
-        $MYsql = "DELETE FROM quartos WHERE id = ?";
+        $MYsql = "DELETE FROM quartos WHERE id = ? ";
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
@@ -33,9 +33,9 @@ class QuartoModel{
     }
 
     public static function atualizar($conn, $id, $data){
-         $MYsql = "UPDATE quartos SET nome = ?, numero = ?, camaSolteiro = ?, camaCasal = ?, disponivel = ?, preco = ? WHERE id = ?";
+         $MYsql = "UPDATE quartos SET nome = ?, numero = ?, camaSolteiro = ?, camaCasal = ?, disponivel = ?, preco = ? WHERE id = ? ";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("ssiibdi",
+            $stmt->bind_param("ssiibd",
             $data["nome"],
             $data["numero"],
             $data["camaCasal"],
