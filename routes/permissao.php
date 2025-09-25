@@ -1,23 +1,23 @@
 <?php
-require_once __DIR__ . "/../controllers/ReservaController.php";
+require_once __DIR__ . "/../controllers/PermissaoController.php";
  
 if ($_SERVER['REQUEST_METHOD'] === "GET"){
     $id = $segmentos[2] ?? null;
     if(isset($id)){
-        ReservaController::buscarPorId($conn, $id);
+        PermissaoController::buscarPorId($conn, $id);
     }else{
-        ReservaController::listarTodos($conn);
+        PermissaoController::listarTodos($conn);
     }
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = json_decode(file_get_contents('php://input'), true);
-    ReservaController::criar($conn, $data);
+    PermissaoController::criar($conn, $data);
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $segmentos[2] ?? null;
    
     if(isset($id)){
-        ReservaController::deletar($conn, $id);
+        PermissaoController::deletar($conn, $id);
     }else{
         jsonResponse(['message' =>'É necessario passar o ID'], 400);
     } 
@@ -25,7 +25,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
 elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'];
-    ReservaController::atualizar($conn, $id, $data);
+    PermissaoController::atualizar($conn, $id, $data);
     
 
 }
