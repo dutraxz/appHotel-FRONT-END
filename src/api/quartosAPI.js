@@ -11,7 +11,7 @@ export async function requisicaoListarQuartos() {
     // espera-se uma "promise" de que chamar o endpoint api/rooms,
     //(que executa p arquivo rooms.php no qual contém todas as requsições possíveis),
     // 
-    const response = await fetch("api/rooms", {
+    const response = await fetch("api/quartos", {
         method: "GET",
         hearders: {
             "Accept": "application/json",
@@ -19,6 +19,14 @@ export async function requisicaoListarQuartos() {
         },
         credentials: "same-origin"
 
-    })
+    });
+    
+ let data = null;
 
+    try {
+        data = await response.json();
+    } catch {
+        data = null;
+    }
+    
 }

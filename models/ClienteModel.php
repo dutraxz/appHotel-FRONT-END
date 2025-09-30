@@ -4,10 +4,10 @@
 class ClienteModel{
     public static function criar($conn, $data){
             $MYsql = "INSERT INTO clientes (nome, email, cpf, telefone,
-            senha, id_cargo_fk) VALUES (?, ?, ?, ?, ?, ?)";
+            senha) VALUES (?, ?, ?, ?, ? )";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("sssssi", $data["nome"], $data["email"], $data["cpf"],
-            $data["telefone"], $data["senha"], $data["id_cargo_fk"]);
+            $stmt->bind_param("sssss", $data["nome"], $data["email"], $data["cpf"],
+            $data["telefone"], $data["senha"]);
             return $stmt->execute();
     }
     public static function listarTodos($conn){
@@ -33,15 +33,14 @@ class ClienteModel{
     }
 
     public static function atualizar($conn, $id, $data){
-         $MYsql = "UPDATE clientes SET nome = ?, email = ?, cpf = ?, telefone = ?, senha = ?, id_cargo_fk = ? WHERE id = ? ";
+         $MYsql = "UPDATE clientes SET nome = ?, email = ?, cpf = ?, telefone = ?, senha = ? WHERE id = ? ";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("sssssii",
+            $stmt->bind_param("sssssi",
             $data["nome"],
             $data["email"],
             $data["cpf"],
             $data["telefone"],
             $data["senha"],
-            $data["id_cargo_fk"],
             $id
         );
         return $stmt->execute();
@@ -49,7 +48,22 @@ class ClienteModel{
     }
 
     
-    public static function buscarDisponiveis($conn){
+    public static function validacao($conn, $email, $password){
+        $MYsql = "SELECT clientes.id, clientes.email. clientes.senha clientes.nome FROM clientes WHERE clientes.email = ?";
+        $stmt = $conn->prepare($MYsql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($cliente = $result->fetch_assoc()) {
+
+            if(passwordController::validateHash($password, $cliente['senha'])) {
+                unset($cliente['senha']);
+                return $cliente;
+            }
+            return false;
+
+        }
         
     }
 

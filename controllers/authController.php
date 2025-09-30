@@ -27,7 +27,6 @@ class authController{
             jsonResponse([
                 "resposta"=>"Credenciais Estão Invalidas"
             ], 404);
-
         }
     }
 }

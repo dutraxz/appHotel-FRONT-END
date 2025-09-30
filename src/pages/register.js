@@ -1,3 +1,4 @@
+import { createRequest } from "../api/clientesAPI.js";
 import LoginForm from "../components/loginForm.js";
 import Navbar from "../components/Navbar.js";
 
@@ -23,12 +24,31 @@ export default function renderRegisterPage() {
     btnSubmit.textContent = 'Register';
 
     // Adiciona o campo de 'Nome' antes do campo de e-mail
-    const nome = document.createElement('input');
-    nome.type = 'text';
-    nome.placeholder = "your name";
-    nome.className = 'form-control mb-3';
-    nome.required = true;
-    formulario.insertBefore(nome, formulario.firstChild); //Coloca antes dentro do formulario, como nome em primeiro
+    const inputNome = document.createElement('input');
+    inputNome.type = 'text';
+    inputNome.placeholder = "your name";
+    inputNome.className = 'form-control mb-3';
+    inputNome.required = true;
+
+
+    const inputCpf = document.createElement('input');
+    inputCpf.type = 'text';
+    inputCpf.placeholder = "your cpf";
+    inputCpf.className = 'form-control mb-3';
+    inputCpf.required = true;
+
+    const inputTelefone = document.createElement('input');
+    inputTelefone.type = 'text';
+    inputTelefone.placeholder = "your number";
+    inputTelefone.className = 'form-control mb-3';
+    inputTelefone.required = true;
+
+    const inputEmail = formulario.querySelector('input[type="email"]');
+    const inputSenha = formulario.querySelector('input[type="password"]');
+
+    formulario.insertBefore(inputNome, inputEmail);
+    formulario.insertBefore(inputCpf, inputEmail);
+    formulario.insertBefore(inputTelefone, inputEmail);
 
     // Adiciona o campo 'Confirmar Senha' após o campo de senha
     const passwordConfirm = document.createElement('input');
@@ -44,4 +64,25 @@ export default function renderRegisterPage() {
     btnVoltar.className = 'btn btn-link mt-2';
     btnVoltar.style.textDecoration = 'none';
     formulario.appendChild(btnVoltar);
+
+    //Monitora o clique no botao para adicionar um evento de submeter os dados do formulario
+    formulario.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const nome = inputNome.value.trim();
+        const cpf = inputCpf.value.trim();
+        const telefone = inputTelefone.value.trim();
+        const email = inputEmail.value.trim();
+        const senha = inputSenha.value.trim();
+
+        try {
+            const result = createRequest(nome, cpf, telefone, email, senha);
+            //Amanhã será aqui que salvaremos o token assim que jeff criá-lo
+            //saveToken(result.token);
+            //window.location.pathname = "/siteVictor/home";
+        }
+        catch {
+            console.log("Erro inesperado!");
+        }
+    });
+    return loginFormContainer;
 }

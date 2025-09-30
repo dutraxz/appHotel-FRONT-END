@@ -11,12 +11,10 @@ export default function renderLoginPage() {
     nav.appendChild(navbar);
 
     const formulario = LoginForm();
-    const contentForm = formulario.querySelector('form');
 
+    const contentForm = formulario.querySelector('form');
     const inputEmail = contentForm.querySelector('input[type="email"]');
     const inputSenha = contentForm.querySelector('input[type="password"]');
-
-
 
     //Monitora o clique no botão para um evento submeter os dados do form
     contentForm.addEventListener("submit", async (e) => {
@@ -40,5 +38,6 @@ export default function renderLoginPage() {
     btnVoltar.href = "register";
     btnVoltar.className = 'btn btn-link mt-2';
     btnVoltar.style.textDecoration = 'none';
+    
     formulario.appendChild(btnVoltar);
 }

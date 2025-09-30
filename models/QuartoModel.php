@@ -49,11 +49,39 @@ class QuartoModel{
     }
 
     
-    public static function buscarDisponiveis($conn){
-        
+    public static function buscarDisponiveis($conn, $dataInicio, $dataFim, $quantidadePessoas){
+        $MYsql = "SELECT
+            quartos.id,
+            quartos.nome,
+            quartos.camaCasal,
+            quartos.camaSolteiro,
+            quartos.preco,
+            quartos.numero,
+            quartos.disponivel
+        FROM
+            quartos q
+        WHERE
+            q.id NOT IN (
+                SELECT
+                reservas.fk_quartos
+                FROM
+                reservas r
+                WHERE
+                (r.fim > ? AND r.inicio < ?)
+            )   
+        AND q.disponivel = true
+        AND ( (q.camaCasal * 2) + q.camaSolteiro ) >= ?;
+        ";
+
+        $stmt = $conn->prepare($MYsql);
+        $stmt->bind_param("iss"
+            $data["quantidadePessoas"],
+            $data["dataInicio"],
+            $data["dataFim"],
+        );
+        $stmt=> execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
-
-
 }
 
 

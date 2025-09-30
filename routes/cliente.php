@@ -11,7 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === "GET"){
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = json_decode(file_get_contents('php://input'), true);
-    ClienteController::criar($conn, $data);
+    if (isset($data)) {
+            ClienteController::criar($conn, $data);
+        } else {
+            jsonResponse(["message"=>"Atributos Invalidos!"], 400);
+        }
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $segmentos[2] ?? null;

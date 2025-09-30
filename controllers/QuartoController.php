@@ -43,7 +43,12 @@ class QuartoController{
         return jsonResponse(['message' => "Erro ao atualizar informações do Quarto"]);
         }
     }
+    public static function validarCntrl($conn, $dataInicio, $dataFim, $quantidadePessoas) {
+        $validacaoListaQuartos = QuartoModel::validar($conn, $dataInicio, $dataFim, $quantidadePessoas);
+        return jsonResponse($validacaoListaQuartos);
+    }
 }
+
 
 
 
