@@ -14,19 +14,18 @@ export default function renderLoginPage() {
 
     const contentForm = formulario.querySelector('form');
     const inputEmail = contentForm.querySelector('input[type="email"]');
-    const inputSenha = contentForm.querySelector('input[type="password"]');
+    const inputSenha = contentForm.querySelector('input[type="senha"]');
 
     //Monitora o clique no botão para um evento submeter os dados do form
     contentForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const email = inputEmail.value.trim();
-        const password = inputSenha.value.trim();
+        const senha = inputSenha.value.trim();
 
         try {
-            const result = await loginRequest(email, password);
-            console.log("login realizado com sucesso", result);
+            const result = await loginRequest(email, senha);
             saveToken(result.token);
-            window.location.pathname = "/siteVictor/home";
+            //window.location.pathname = "/siteVictor/home";
         }
         catch{
             console.log("Erro inesperado!");

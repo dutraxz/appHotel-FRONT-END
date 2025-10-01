@@ -1,15 +1,25 @@
 <?php
 require_once __DIR__ . "/../models/ClienteModel.php";
+require_once __DIR__ . "/../helpers/token_jwt.php";
+require_once __DIR__ . "/../controllers/authController.php";
+
 require_once "passwordController.php";
-require_once "DataController.php";
 
 
 class ClienteController{
     public static function criar($conn, $data){
+
+        $login = [
+            "email" => $data['email'],
+            "senha" => $data['senha'],
+        ];
+
+
         $data['senha'] = passwordController::generateHash($data['senha']);
         $result= ClienteModel::criar($conn, $data);
+        
         if($result){
-        return jsonResponse(['message' => "Cliente criado com sucesso"]);
+            authController::loginCliente($conn, $login);
         }
         else{
         return jsonResponse(['message' => "Erro ao criar Cliente"], 400);
@@ -42,9 +52,35 @@ class ClienteController{
             return jsonResponse(['message' => "Informações do Cliente atualizadas com sucesso"]);
         }
         else{
-        return jsonResponse(['message' => "Erro ao atualizar informações do Cliente"]);
+        return jsonResponse(['message' => "Erro ao atualizar informações do Cliente"], 400);
         }
     }
+    public static function loginCliente($conn, $data) {
+
+      
+        $data['email'] = trim($data['email']);
+        $data['senha'] = trim($data['senha']);
+
+ 
+        if (empty($data['email']) || empty($data['senha'])) {
+            return jsonResponse([
+                "status" => "erro",
+                "message" => "Preencha todos os campos!"
+            ], 401);
+        }
+ 
+        $cliente = ClienteModel::clienteValidation($conn, $data['email'], $data['senha']);
+        if ($cliente) {
+            $token = createToken($cliente);
+            return jsonResponse([ "token" => $token ]);
+        } else {
+            return jsonResponse([
+                "status" => "erro",
+                "message" => "Credenciais inválidas!"
+            ], 401);
+        }
+    }
+
 }
 
 

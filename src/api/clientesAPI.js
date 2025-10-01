@@ -9,7 +9,7 @@ export async function createRequest (nome, cpf, telefone, email, senha) {
 
         body: JSON.stringify(dados),
         credentials: "same-origin"
-        //body: new URLSearchParams({ "email":email , "password":senha }).toString(),
+        //body: new URLSearchParams({ "email":email , "senha":senha }).toString(),
         
         /*URL da requisiçao é a mesma da origem dp front(mesmo protocolo http/mesmo dominio
         local/mesma porta 80 do servidoer web apache)

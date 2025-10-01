@@ -6,9 +6,15 @@ class QuartoModel{
             $MYsql = "INSERT INTO quartos (nome, numero, camaSolteiro, camaCasal,
             disponivel, preco) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("ssiibd", $data["nome"], $data["numero"], $data["camaCasal"],
-            $data["camaSolteiro"], $data["disponivel"], $data["preco"]);
-            return $stmt->execute();
+            $stmt->bind_param("ssiibd",
+            $data["nome"],
+            $data["numero"],
+            $data["camaCasal"],
+            $data["camaSolteiro"],
+            $data["disponivel"],
+            $data["preco"]
+        );
+        return $stmt->execute();
     }
     public static function listarTodos($conn){
         $MYsql = "SELECT * FROM quartos";
@@ -49,39 +55,26 @@ class QuartoModel{
     }
 
     
-    public static function buscarDisponiveis($conn, $dataInicio, $dataFim, $quantidadePessoas){
-        $MYsql = "SELECT
-            quartos.id,
-            quartos.nome,
-            quartos.camaCasal,
-            quartos.camaSolteiro,
-            quartos.preco,
-            quartos.numero,
-            quartos.disponivel
-        FROM
-            quartos q
-        WHERE
-            q.id NOT IN (
-                SELECT
-                reservas.fk_quartos
-                FROM
-                reservas r
-                WHERE
-                (r.fim > ? AND r.inicio < ?)
-            )   
-        AND q.disponivel = true
-        AND ( (q.camaCasal * 2) + q.camaSolteiro ) >= ?;
-        ";
-
-        $stmt = $conn->prepare($MYsql);
-        $stmt->bind_param("iss"
-            $data["quantidadePessoas"],
-            $data["dataInicio"],
+    public static function buscarDisponiveis ($conn,$data){
+        $MYsql = "SELECT *
+        FROM quartos
+        WHERE quartos.disponivel = 1
+        AND (quartos.camaCasal * 2 + quartos.camaSolteiro) >= ?
+        AND quartos.id NOT IN (
+            SELECT reservas.id_quarto_fk
+            FROM reservas
+            WHERE (reservas.dataFim <= ? AND reservas.dataInicio >= ?))";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss", 
+            $data["qtd"],
             $data["dataFim"],
+            $data["dataInicio"],
         );
-        $stmt=> execute();
+        $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+
+
 }
 
 

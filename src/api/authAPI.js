@@ -1,14 +1,14 @@
-export async function loginRequest(email, password){
+export async function loginRequest(email, senha){
     
-    const dados = {email, password};
-    const response = await fetch("api/clientelogin", {
+    const dados = {email, senha};
+    const response = await fetch("api/login/cliente", {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-type": "application/json"
         },
         body: JSON.stringify(dados),
-        //body: new URLSearchParams({ "email":email , "password":senha }).toString(),
+        //body: new URLSearchParams({ "email":email , "senha":senha }).toString(),
         
         /*URL da requisiçao é a mesma da origem dp front(mesmo protocolo http/mesmo dominio
         local/mesma porta 80 do servidoer web apache)

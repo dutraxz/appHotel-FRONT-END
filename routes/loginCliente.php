@@ -3,7 +3,7 @@
  
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $data = json_decode(file_get_contents('php://input'), true);
-        ClienteController::clienteLogin($conn, $data);
+        ClienteController::loginCliente($conn, $data);
     } else {
         jsonResponse([
         "status"=>"erro",

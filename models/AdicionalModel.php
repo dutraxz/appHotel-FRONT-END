@@ -17,7 +17,8 @@ class AdicionalModel {
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
 
     }
     public static function deletar($conn, $id){

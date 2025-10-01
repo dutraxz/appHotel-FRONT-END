@@ -11,7 +11,7 @@ require_once __DIR__ . "/controllers/passwordController.php";
 
     $data = [
         "email"=>"victorED@gmail.com",
-        "password"=>'vicEDU'
+        "senha"=>'vicEDU'
     ];
 
 
@@ -131,10 +131,10 @@ require_once __DIR__ . "/controllers/passwordController.php";
 
     //echo validateToken($token);
     
-    //echo passWordController::generateHash($data['password']);
+    //echo passwordController::generateHash($data['senha']);
 
    //$hash = '$2y$10$yTQ9oCnWXqq.W1dMaDariu67Xzw.V9jiRjnciolSmPaxarwG/RvKG';
-   //echo passWordController::validateHash($data['password'], $hash);
+   //echo passwordController::validateHash($data['senha'], $hash);
 
     //echo "<br>";
 

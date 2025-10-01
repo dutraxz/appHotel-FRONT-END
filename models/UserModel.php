@@ -3,8 +3,9 @@
 
 class UserModel{
 
-    public static function validateUser($conn, $email, $password, ){
-        $sql = "SELECT usuarios.id, usuarios.email, usuarios.nome, usuarios.senha, permissao.nome AS Cargo
+    public static function validateUser($conn, $email, $senha, ){
+        $sql = "SELECT usuarios.id, usuarios.email, usuarios.nome, usuarios.senha, permissao.nome
+        AS Cargo
         FROM usuarios 
         JOIN permissao ON permissao.id = usuarios.id_perm_fk 
         WHERE usuarios.email = ? ";
@@ -14,7 +15,7 @@ class UserModel{
         $result = $stmt->get_result();
 
         if($user = $result->fetch_assoc()){
-            if(passwordController::validateHash($password, $user['senha'])){
+            if(passwordController::validateHash($senha, $user['senha'])){
                 unset($user['senha']);
                 return $user;
         }

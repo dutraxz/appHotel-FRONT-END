@@ -6,7 +6,7 @@
     
     $data = [
         "email"=>"victorED@gmail.com",
-        "password"=>"vicEDU"
+        "senha"=>"vicEDU"
     ];
 
     authController::login($conn, $data);

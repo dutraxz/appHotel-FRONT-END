@@ -51,11 +51,11 @@ export default function renderRegisterPage() {
     formulario.insertBefore(inputTelefone, inputEmail);
 
     // Adiciona o campo 'Confirmar Senha' após o campo de senha
-    const passwordConfirm = document.createElement('input');
-    passwordConfirm.type = 'password';
-    passwordConfirm.placeholder = "Confirm your password";
-    passwordConfirm.required = true;
-    formulario.insertBefore(passwordConfirm, btnSubmit); //coloca como ultimo o campo confirma senha
+    const senhaConfirm = document.createElement('input');
+    senhaConfirm.type = 'senha';
+    senhaConfirm.placeholder = "Confirm your senha";
+    senhaConfirm.required = true;
+    formulario.insertBefore(senhaConfirm, btnSubmit); //coloca como ultimo o campo confirma senha
 
     // Cria e adiciona o link para a página de login
     const btnVoltar = document.createElement('a');

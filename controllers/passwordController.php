@@ -2,12 +2,12 @@
 
 class passwordController{
 
-    public static function generateHash($password){
-        return password_hash($password, PASSWORD_BCRYPT);
+    public static function generateHash($senha){
+        return password_hash($senha, PASSWORD_BCRYPT);
     }
 
-    public static function validateHash($password, $hash){
-        return password_verify($password, $hash);
+    public static function validateHash($senha, $hash){
+        return password_verify($senha, $hash);
     }
 
 }

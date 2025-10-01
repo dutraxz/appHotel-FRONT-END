@@ -3,6 +3,7 @@ require_once __DIR__ . "/../controllers/AdicionalController.php";
  
 if ($_SERVER['REQUEST_METHOD'] === "GET"){
     $id = $segmentos[2] ?? null;
+    
     if(isset($id)){
         AdicionalController::buscarPorId($conn, $id);
     }else{
