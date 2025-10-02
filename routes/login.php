@@ -1,5 +1,4 @@
 <?php
-
 #require_once "../config/database.php";
 require_once __DIR__ . "/../controllers/authController.php";
 
@@ -13,17 +12,25 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"){
     authController::loginCliente($conn, $data);
     
 }
-elseif($opcao = "funcionario"){ //login Funcionário
-    authController::loginFuncionario($conn, $data);
+    elseif($opcao = "funcionario"){ //login Funcionário
+    authController::login($conn, $data);
 }
+//teste
+    // elseif ($_SERVER['REQUEST_METHOD'] === "PUT"){
+    // validateTokenAPI();
+    // jsonResponse(['message']=> "token invalido");
 
-
-
-}else{
+    // $headers = getallheaders();
+    // if(!isset($headers["Authorization"]) ){
+    // return jsonResponse(['message'=>'verifiqued'], 200);
+    // }
+    // $token = str_replace("Bearer", "", $headers["Authorization"]);
+    // jsonResponse(['message'=>$headers], 200);
+}
+else{
     jsonResponse([
         'status'=>'erro',
         'message'=>'Método não permitido'
     ], 405);
 }
-
 ?>

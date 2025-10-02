@@ -13,11 +13,11 @@
             if (empty($data['email']) || empty($data['senha'])){
                 return jsonResponse(
                     ["status"=>"Erro Critico!!!!",
-                    "menssagem"=>"Preencha todos os campos"], 401            
+                    "menssagem"=>"Preencha todos os "], 401            
                 );
             }
             //informaçoes corretas
-            $user = UserModel::validateUser($conn, $data['email'], $data['senha']);
+            $user = UserModel::validandoUsuario($conn, $data['email'], $data['senha']);
             if ($user){
                 $token = createToken($user);
  
@@ -42,7 +42,7 @@
                 );
             }
             //informaçoes corretas
-            $user = ClienteModel::validacaoCliente($conn, $data['email'], $data['senha']);
+            $user = ClienteModel::validandoCliente($conn, $data['email'], $data['senha']);
             if ($user){
                 $token = createToken($user);
  
@@ -55,7 +55,6 @@
                     "menssagem"=>"Credenciais invalidas"], 401);
             }
         }
- 
     }
 ?>
  

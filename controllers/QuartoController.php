@@ -1,18 +1,18 @@
 <?php
-require_once __DIR__ . "/../models/QuartoModel.php";
+require_once __DIR__ . "/../models/ReservaModel.php";
 require_once "ValidatorController.php";
 
 
 class QuartoController{
-    public static $labels = ["nome", "numero", "camaCasal", "camaSolteiro", "preco", "disponivel"];
-
     public static function criar($conn, $data){
+        ValidatorController::validador_data($data[ "id_adicional_fk", "id_pedido_fk", "id_quarto_fk", "dataInicio", "dataFim" ]);
 
-        $validar = validatorController::validate_data($data, $self::$labels);
+        $data["dataInicio"] = ValidatorControlelr::fix_dateHour($data["dataInicio"], 14)
+        $data["dataFim"] = ValidatorControlelr::fix_dateHour($data["dataFim"], 12)
 
         if( !empty($validar) ){
             $dados = implode(", ", $validar);
-            return jsonResponse(['message'=>"Erro, Falta o campo: ".$dados], 400);
+            return jsonResponse(['message'=>"Erro, Falta o campo: " .$dados], 400);
         }
 
         $result= QuartoModel::criar($conn, $data);
@@ -65,6 +65,13 @@ class QuartoController{
         }else{
             return jsonResponse(['message'=>'asdsfaf'], 400);
         }
+    }
+    public static function validarQuartos($conn, $data) {
+    if($result) {
+        return jsonResponse(['Quartos'=> $result]);
+    }else{
+        return jsonResponse(['message'=> 'não tem quartos disponiveis', 400]);
+    }
     }
 }
 ?>

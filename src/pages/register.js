@@ -51,11 +51,11 @@ export default function renderRegisterPage() {
     formulario.insertBefore(inputTelefone, inputEmail);
 
     // Adiciona o campo 'Confirmar Senha' após o campo de senha
-    const senhaConfirm = document.createElement('input');
-    senhaConfirm.type = 'senha';
-    senhaConfirm.placeholder = "Confirm your senha";
-    senhaConfirm.required = true;
-    formulario.insertBefore(senhaConfirm, btnSubmit); //coloca como ultimo o campo confirma senha
+    const passwordConfirm = document.createElement('input');
+    passwordConfirm.type = 'password';
+    passwordConfirm.placeholder = "Confirm your password";
+    passwordConfirm.required = true;
+    formulario.insertBefore(passwordConfirm, btnSubmit); //coloca como ultimo o campo confirma senha
 
     // Cria e adiciona o link para a página de login
     const btnVoltar = document.createElement('a');
@@ -66,7 +66,7 @@ export default function renderRegisterPage() {
     formulario.appendChild(btnVoltar);
 
     //Monitora o clique no botao para adicionar um evento de submeter os dados do formulario
-    formulario.addEventListener("submit", async (e) => {
+    formulario.addEventListener("submit", async(e)=> {
         e.preventDefault();
         const nome = inputNome.value.trim();
         const cpf = inputCpf.value.trim();
@@ -74,15 +74,13 @@ export default function renderRegisterPage() {
         const email = inputEmail.value.trim();
         const senha = inputSenha.value.trim();
 
-        try {
+        try{
             const result = createRequest(nome, cpf, telefone, email, senha);
-            //Amanhã será aqui que salvaremos o token assim que jeff criá-lo
-            //saveToken(result.token);
-            //window.location.pathname = "/siteVictor/home";
         }
-        catch {
+        catch{
             console.log("Erro inesperado!");
         }
     });
+
     return loginFormContainer;
 }

@@ -53,10 +53,10 @@ class ClienteModel{
     }
 
     
-    public static function validacaoCliente($conn, $email, $senha){
-        $MYsql = "SELECT clientes.id, clientes.email. clientes.senha clientes.nome permissao.nome AS cargo
+    public static function validandoCliente($conn, $email, $senha){
+        $MYsql = "SELECT clientes.id, clientes.nome, clientes.email, clientes.senha, permissao.nome AS cargo
         FROM clientes
-        JOIN permissao ON permissao.id = id_cargo_fk;
+        JOIN permissao ON clientes.id_cargo_fk = permissao.id
         WHERE clientes.email = ?";
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("s", $email);
@@ -73,7 +73,4 @@ class ClienteModel{
         }
     }
 }
-
-
-
 ?>

@@ -15,6 +15,8 @@ function createToken($user){
     return JWT::encode($payload, SECRET_KEY, "HS256");
 }
 function validateToken($token){
+
+    
     try{
         $key = new Key(SECRET_KEY, "HS256");
         $decode = JWT::decode($token, $key);
@@ -22,6 +24,19 @@ function validateToken($token){
         
     }catch(Exception $erro){
         return false;
+    }
+    
+}
+function validateTokenAPI(){
+    $headers = getallheaders();
+    if(!isset($headers["Authorization"]) ){
+        jsonResponse(["messagem" => "Esta faltando o token"],401);
+        exit;
+    }
+    $token = str_replace("Bearer ", "", $headers["Authorization"]);
+    if(!validateToken($token)){
+        jsonResponse(["messagem" => "O token esta invalido"],401);
+        exit;
     }
 }
 ?>

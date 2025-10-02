@@ -4,28 +4,23 @@ require_once __DIR__ . "/../controllers/QuartoController.php";
 if ($_SERVER['REQUEST_METHOD'] === "GET"){
     $id = $segmentos[2] ?? null;
     if(isset($id)){
-        quartoController::buscarPorId($conn, $id);
+    QuartoController::buscarPorId($conn, $id);
+
+        $inicio = isset($_GET['inicio']) ? $_GET['inicio'] : null;
+            $fim = isset($_GET['fim']) ? $_GET['fim'] : null;
+            $qtd = isset($_GET['qtd']) ? $_GET['qtd'] : null;
+            QuartoController::get_available($conn, ["dataInicio"=>$inicio, "dataFim"=>$fim, "qtd"=>$qtd]);
+
     }else{
-        quartoController::listarTodos($conn);
+        QuartoController::listarTodos($conn);
     }
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = json_decode(file_get_contents('php://input'), true);
-
-    if (isset($data['dataInicio']) && isset($data['dataFim'])) {
-        $dataInicio = $data['dataInicio'];
-        $dataFim = $data['dataFim']
-        $quantidadePessoas = $data['quantidadePessoas'];
-        QuartoController::validarCntrl($conn, $dataInicio, $dataFim, $quantidadePessoas);
-    }
-    else if (isset($data['nome'])) {
         QuartoController::criar($conn, $data);
-    }
-    else {
         jsonResponse(['message' =>"Atributos de requisição inválidos ou incompletos"], 400);
     }
-}
 
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $segmentos[2] ?? null;

@@ -19,7 +19,7 @@ class ClienteController{
         $result= ClienteModel::criar($conn, $data);
         
         if($result){
-            authController::loginCliente($conn, $login);
+            authController::loginCliente($conn, $data);
         }
         else{
         return jsonResponse(['message' => "Erro ao criar Cliente"], 400);
@@ -56,8 +56,6 @@ class ClienteController{
         }
     }
     public static function loginCliente($conn, $data) {
-
-      
         $data['email'] = trim($data['email']);
         $data['senha'] = trim($data['senha']);
 

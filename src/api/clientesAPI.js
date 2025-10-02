@@ -31,5 +31,5 @@ export async function createRequest (nome, cpf, telefone, email, senha) {
     return {
         ok: true,
         raw: data
-    };
+    }
 }
