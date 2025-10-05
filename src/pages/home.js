@@ -1,9 +1,9 @@
+import { quartosDisponivelRequest } from "../api/roomAPI.js";
+import DataSelector from "../components/DataSelector.js";
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
+import RoomCard from "../components/RoomCard.js";
 import Footer from "../components/Footer.js";
-import RoomCard from "../components/RommCard.js";
-import DateSelector from "../components/DateSelector.js";
-
     export default function renderHomePage() {
         //Navbar
         const nav = document.getElementById('navbar');
@@ -19,18 +19,31 @@ import DateSelector from "../components/DateSelector.js";
         const hero = Hero();
         divRoot.appendChild(hero);
         
-        //Footer
-        const rodape = document.getElementById('rodape');
-        rodape.innerHTML = '';
-        const footer = Footer();
-        rodape.appendChild(footer);
-
-         const dateSelector = DateSelector();
+        const dateSelector = DataSelector();
         divRoot.appendChild(dateSelector);
         
-        const cardsGroup = document.createElement('div');
-        cardsGroup.className = "cards";
         
+        const btnSearchRoom= dateSelector.querySelector('button');
+        btnSearchRoom.addEventListener('click', async (e) =>{
+            e.preventDefault();
+            
+            //teste
+            const dataInicio = "2025-11-22";
+            const dataFim = "2025-11-24";
+            const qtd = 2;
+            
+            try{
+                const quartos = quartosDisponivelRequest({dataInicio, dataFim, qtd});
+            } catch(error){
+                console.log(error);
+            }
+        } 
+        
+    );
+    
+    const cardsGroup = document.createElement('div');
+    cardsGroup.className = "cards";
+
         for(var i = 0; i < 3; i++) {
             const cards = RoomCard(i);
             cardsGroup.appendChild(cards);
@@ -39,6 +52,10 @@ import DateSelector from "../components/DateSelector.js";
         
         divRoot.appendChild(cardsGroup);
 
-       
-
+        //Footer
+        const rodape = document.getElementById('rodape');
+        rodape.innerHTML = '';
+        
+        const footer = Footer();
+        rodape.appendChild(footer);
     }

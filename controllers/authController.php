@@ -4,16 +4,16 @@
     require_once 'passwordController.php';
     require_once __DIR__ . "/../helpers/token_jwt.php";
  
-    class authController{
+    class AuthController{
         public static function login($conn, $data){
             $data['email'] = trim($data['email']);
             $data['senha'] = trim($data['senha']);
- 
+
             //Erro quando o campo estiver vazio
             if (empty($data['email']) || empty($data['senha'])){
                 return jsonResponse(
                     ["status"=>"Erro Critico!!!!",
-                    "menssagem"=>"Preencha todos os "], 401            
+                    "menssagem"=>"Preencha todos os campos"], 401             
                 );
             }
             //informaçoes corretas
@@ -33,12 +33,12 @@
         public static function loginCliente($conn, $data){
             $data['email'] = trim($data['email']);
             $data['senha'] = trim($data['senha']);
- 
+
             //Erro quando o campo estiver vazio
             if (empty($data['email']) || empty($data['senha'])){
                 return jsonResponse(
                     ["status"=>"Erro Critico!!!!",
-                    "menssagem"=>"Preencha todos os campos"], 401            
+                    "menssagem"=>"Preencha todos os campos"], 401             
                 );
             }
             //informaçoes corretas

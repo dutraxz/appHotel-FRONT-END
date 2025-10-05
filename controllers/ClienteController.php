@@ -1,31 +1,27 @@
 <?php
 require_once __DIR__ . "/../models/ClienteModel.php";
 require_once __DIR__ . "/../helpers/token_jwt.php";
-require_once __DIR__ . "/../controllers/authController.php";
-
+require_once __DIR__ . "/../controllers/AuthController.php";
 require_once "passwordController.php";
 
 
-class ClienteController{
-    public static function criar($conn, $data){
-
-        $login = [
-            "email" => $data['email'],
-            "senha" => $data['senha'],
+class ClienteController {
+     public static function criar($conn, $data) {
+        $dados = [
+            "email" => $data["email"],
+            "senha" => $data["senha"]
         ];
-
 
         $data['senha'] = passwordController::generateHash($data['senha']);
         $result= ClienteModel::criar($conn, $data);
         
         if($result){
-            authController::loginCliente($conn, $data);
+            AuthController::loginCliente($conn, $dados);
         }
         else{
-        return jsonResponse(['message' => "Erro ao criar Cliente"], 400);
+            return jsonResponse(['message' => "Erro ao criar Cliente"], 400);
         }
     }
-
     public static function listarTodos($conn){
         $listarClientes = ClienteModel::listarTodos($conn);
         return jsonResponse($listarClientes);
@@ -66,8 +62,7 @@ class ClienteController{
                 "message" => "Preencha todos os campos!"
             ], 401);
         }
- 
-        $cliente = ClienteModel::clienteValidation($conn, $data['email'], $data['senha']);
+        $cliente = ClienteModel::validandoCliente($conn, $data['email'], $data['senha']);
         if ($cliente) {
             $token = createToken($cliente);
             return jsonResponse([ "token" => $token ]);
@@ -78,9 +73,5 @@ class ClienteController{
             ], 401);
         }
     }
-
 }
-
-
-
 ?>

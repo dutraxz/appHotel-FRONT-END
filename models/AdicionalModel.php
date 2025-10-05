@@ -17,8 +17,7 @@ class AdicionalModel {
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
+        return $stmt->get_result()->fetch_assoc();
 
     }
     public static function deletar($conn, $id){
@@ -26,9 +25,7 @@ class AdicionalModel {
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
-
     }
-
     public static function atualizar($conn, $id, $data){
             $MYsql = "UPDATE adicionais SET nome = ?, preco = ? WHERE id = ?";
             $stmt = $conn->prepare($MYsql);
@@ -38,12 +35,6 @@ class AdicionalModel {
             $id
         );
         return $stmt->execute();
-
     }
-
-
 }
-
-
-
 ?>

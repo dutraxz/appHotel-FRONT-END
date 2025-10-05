@@ -3,9 +3,15 @@
 
 class ReservaModel{
     public static function criar($conn, $data){
-            $MYsql = "INSERT INTO reservas (id_adicional_fk, id_quarto_fk, id_pedido_fk) VALUES (?, ?, ?)";
+            $MYsql = "INSERT INTO reservas (id_adicional_fk, id_quarto_fk, id_pedido_fk, dataInicio, dataFim) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("iii", $data["id_adicional_fk"], $data["id_quarto_fk"], $data["id_pedido_fk"]);
+            $stmt->bind_param("iiiss",
+            $data["id_adicional_fk"],
+            $data["id_quarto_fk"],
+            $data["id_pedido_fk"],
+            $data["dataInicio"],
+            $data["dataFim"]
+        );
             return $stmt->execute();
     }
     public static function listarTodos($conn){
@@ -31,12 +37,14 @@ class ReservaModel{
     }
 
     public static function atualizar($conn, $id, $data){
-         $MYsql = "UPDATE reservas SET id_adicional_fk = ?, id_quarto_fk = ?, id_pedido_fk = ? WHERE id = ? ";
+         $MYsql = "UPDATE reservas SET id_adicional_fk = ?, id_quarto_fk = ?, id_pedido_fk = ?, dataInicio = ?, dataFim = ? WHERE id = ? ";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("iii",
+            $stmt->bind_param("iiissi",
             $data["id_adicional_fk"],
             $data["id_quarto_fk"],
             $data["id_pedido_fk"],
+            $data["dataInicio"],
+            $data["dataFim"],
             $id
         );
         return $stmt->execute();
@@ -44,13 +52,13 @@ class ReservaModel{
     }
 
     
-    public static function buscarDisponiveis($conn){
-        
+        public static function listarPorPedido($conn, $id_pedido){
+            $MYsql = "SELECT * FROM reservas WHERE id_pedido_fk = ?";
+            $stmt = $conn->prepare($MYsql);
+            $stmt->bind_param("i", $id_pedido);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
     }
-
-
-}
-
-
-
 ?>

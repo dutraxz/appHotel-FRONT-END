@@ -8,7 +8,7 @@ class UserModel{
 
         }
         public static function buscarPorId($conn, $id){
-            $MYsql = "SELECT usuarios.id, usuarios.nome, usuarios.email, usuarios.senha, roles.nome AS cargo 
+            $MYsql = "SELECT usuarios.id, usuarios.nome, usuarios.email, usuarios.senha, permissao.nome AS cargo 
             FROM usuarios JOIN permissao ON usuarios.id_perm_fk = permissao.id WHERE usuarios.id = ?";
             $stmt = $conn->prepare($MYsql);
             $stmt->bind_param("i", $id);
@@ -16,24 +16,24 @@ class UserModel{
             return $stmt->get_result()->fetch_assoc(); 
         }
         public static function criar($conn, $data){
-            $MYsql = "INSERT INTO usuarios(nome, email, senha, id_perm_fk)VALUES (?, ?, ?, ?, ?)";
+            $MYsql = "INSERT INTO usuarios(nome, email, senha, id_perm_fk)VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($MYsql);
             $stmt->bind_param("sssi", 
             $data["nome"],
             $data["email"],
             $data["senha"],
-            $data["id_role_fk"]
+            $data["id_perm_fk"]
         );
             return $stmt->execute();
         }
         public static function atualizar($conn, $id, $data){
-            $MYsql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? id_perm_fk = ? WHERE id = ?";
+            $MYsql = "UPDATE usuarios SET nome = ?, email = ?, senha = ?, id_perm_fk = ? WHERE id = ?";
             $stmt = $conn->prepare($MYsql);
             $stmt->bind_param("sssii", 
             $data["nome"],
             $data["email"],
             $data["senha"],
-            $data["id_role_fk"],
+            $data["id_perm_fk"],
             $id
         );
             return $stmt->execute();
@@ -61,7 +61,7 @@ class UserModel{
                     return $user;
                 }
             }
-            return false;
-        }   
+        return false;
     }
+}
 ?>

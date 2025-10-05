@@ -24,7 +24,7 @@ class UserController{
         return jsonResponse($buscarId);
     }
 
-    public static function delete($conn, $id){
+    public static function deletar($conn, $id){
         $result = UserModel::deletar($conn, $id);
         if($result){
             return jsonResponse(['message'=>"Usuário deletado com sucesso"]);

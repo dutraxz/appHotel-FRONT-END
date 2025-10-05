@@ -1,21 +1,20 @@
 <?php
-require_once __DIR__ . "/../models/ReservaModel.php";
-require_once "ValidatorController.php";
+require_once __DIR__ . "/../models/QuartoModel.php";
+require_once "ValidadorController.php";
 
 
 class QuartoController{
+     public static $labels = ['nome', 'numero', 'camaCasal', 'camaSolteiro', 'preco', 'disponivel'];
+     
     public static function criar($conn, $data){
-        ValidatorController::validador_data($data[ "id_adicional_fk", "id_pedido_fk", "id_quarto_fk", "dataInicio", "dataFim" ]);
-
-        $data["dataInicio"] = ValidatorControlelr::fix_dateHour($data["dataInicio"], 14)
-        $data["dataFim"] = ValidatorControlelr::fix_dateHour($data["dataFim"], 12)
+        $validar = ValidadorController::issetData($data, self::$labels);
 
         if( !empty($validar) ){
             $dados = implode(", ", $validar);
             return jsonResponse(['message'=>"Erro, Falta o campo: " .$dados], 400);
         }
 
-        $result= QuartoModel::criar($conn, $data);
+        $result = QuartoModel::criar($conn, $data);
         if($result){
             return jsonResponse(['message' => "Quarto criado com sucesso"]);
         }
@@ -30,7 +29,7 @@ class QuartoController{
     }
 
     public static function buscarPorId($conn, $id){
-         if( empty($id) ){
+         if(empty($id)){
             return jsonResponse(['message'=>"Erro, Falta o campo: id"], 400);
         }
         $buscarId = QuartosModel::buscarPorId($conn, $id);
@@ -59,6 +58,9 @@ class QuartoController{
     
 
     public static function buscarDisponiveis($conn, $data){
+
+        ValidadorController::validate_data($data, ["dataInicio", "dataFim", "qtd"]);
+        
         $result = QuartoModel::buscarDisponiveis($conn, $data);
         if($result){
             return jsonResponse(['Quartos'=>$result]);    
@@ -66,12 +68,12 @@ class QuartoController{
             return jsonResponse(['message'=>'asdsfaf'], 400);
         }
     }
-    public static function validarQuartos($conn, $data) {
-    if($result) {
-        return jsonResponse(['Quartos'=> $result]);
-    }else{
-        return jsonResponse(['message'=> 'não tem quartos disponiveis', 400]);
-    }
-    }
 }
+    // public static function validarQuartos($conn, $data) {
+    // if($result) {
+    //     return jsonResponse(['Quartos'=> $result]);
+    // }else{
+    //     return jsonResponse(['message'=> 'não tem quartos disponiveis', 400]);
+    // }
+    // }
 ?>

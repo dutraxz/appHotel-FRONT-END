@@ -1,6 +1,4 @@
 <?php
-
-
 class QuartoModel{
     public static function criar($conn, $data){
             $MYsql = "INSERT INTO quartos (nome, numero, camaSolteiro, camaCasal,
@@ -35,7 +33,6 @@ class QuartoModel{
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
-
     }
 
     public static function atualizar($conn, $id, $data){
@@ -51,11 +48,8 @@ class QuartoModel{
             $id
         );
         return $stmt->execute();
-
     }
-
-    
-    public static function buscarDisponiveis ($conn,$data){
+    public static function buscarDisponiveis ($conn, $data){
         $MYsql =
         "SELECT *
         FROM quartos q WHERE q.disponivel = true AND ((q.camaCasal * 2) + q.camaSolteiro) >= ?
@@ -63,19 +57,14 @@ class QuartoModel{
         SELECT reservas.id_quarto_fk
         FROM reservas
         WHERE (reservas.dataFim >= ? AND reservas.dataInicio <= ?))";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iss", 
+        $stmt = $conn->prepare($MYsql);
+        $stmt->bind_param("iss",
             $data["qtd"],
             $data["dataFim"],
             $data["dataInicio"],
         );
-        $stmt->execute();   
+        $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
-
-
 }
-
-
-
 ?>

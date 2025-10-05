@@ -1,7 +1,4 @@
 <?php
-require_once __DIR__ . "/../models/AdicionalModel.php";
-
-
 class AdicionalController{
 
     public static function criar($conn, $data){
@@ -10,13 +7,13 @@ class AdicionalController{
             return jsonResponse(['message' => "Adicional criado com sucesso"]);
         }
         else{
-        return jsonResponse(['message' => "Erro ao criar Adicional"]);
+        return jsonResponse(['message' => "Erro ao criar Adicional"], 400);
         }
     }
 
     public static function listarTodos($conn){
-        $listarAdicionals = AdicionalModel::listarTodos($conn);
-        return jsonResponse($listarAdicionals);
+        $listarAdicionais = AdicionalModel::listarTodos($conn);
+        return jsonResponse($listarAdicionais);
     }
 
     public static function buscarPorId($conn, $id){

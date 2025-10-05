@@ -1,7 +1,7 @@
 import { loginRequest, saveToken } from "../api/authAPI.js";
 import LoginForm from "../components/loginForm.js";
+import Footer from "../components/Footer.js";
 import Navbar from "../components/Navbar.js";
-import Footer from "../components/footer.js";
 
 export default function renderLoginPage() {
     const nav = document.getElementById('navbar');
@@ -20,8 +20,6 @@ export default function renderLoginPage() {
     const contentForm = formulario.querySelector('form');
     const inputEmail = contentForm.querySelector('input[type="email"]');
     const inputSenha = contentForm.querySelector('input[type="password"]');
-
-
 
     //Monitora o clique no botao para acionar um evento de submeter os dados do form
     contentForm.addEventListener('submit', async (e) => {

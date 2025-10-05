@@ -7,23 +7,22 @@ if($erroDB){
     echo "erro na conexão";
     exit;
 }
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $metodo = $_SERVER['REQUEST_METHOD'];
 
-$pasta = basename(dirname(__FILE__));
+$pasta = strtolower(basename(dirname(__FILE__)));
 $uri = str_replace("/$pasta", "", $uri);
 $segmentos = explode("/", trim($uri, "/"));
 
 $route = $segmentos[0] ?? null;
 $subRoute = $segmentos[1] ?? null;
 
-if($route != "api"){
+if($route != "api") {
     require __DIR__ . "/public/index.html";
     require "teste.php";
     exit;
 
-}
-elseif($route === "api"){
+}elseif($route === "api") {
     if(in_array($subRoute, [ "login", "quarto", "cliente", "pedido", "reserva", "adicional"] )){
         require "routes/${subRoute}.php";
     }else{
@@ -31,7 +30,7 @@ elseif($route === "api"){
     }
     exit;
 
-}else{
+}else {
     echo "404, Página não encontrada";
     exit;
 }

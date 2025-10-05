@@ -4,7 +4,7 @@ require_once __DIR__ . "/../controllers/authController.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] === "POST"){
-    $opcao = $segments[2] ?? null;
+    $opcao = $segmentos[2] ?? null;
     $data = json_decode(file_get_contents('php://input'), true);
     
 

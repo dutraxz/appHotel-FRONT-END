@@ -4,7 +4,7 @@
 class ClienteModel{
     public static function criar($conn, $data){
             $MYsql = "INSERT INTO clientes (nome, email, cpf, telefone,
-            senha) VALUES (?, ?, ?, ?, ? )";
+            senha) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($MYsql);
             $stmt->bind_param("sssss",
             $data["nome"],
@@ -19,7 +19,6 @@ class ClienteModel{
         $MYsql = "SELECT * FROM clientes";
         $result = $conn->query($MYsql);
         return $result->fetch_all(MYSQLI_ASSOC);
-        
     }
     public static function buscarPorId($conn, $id){
         $MYsql = "SELECT * FROM clientes WHERE id = ?";
@@ -34,7 +33,6 @@ class ClienteModel{
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
-
     }
 
     public static function atualizar($conn, $id, $data){
@@ -51,25 +49,24 @@ class ClienteModel{
         return $stmt->execute();
 
     }
-
-    
     public static function validandoCliente($conn, $email, $senha){
         $MYsql = "SELECT clientes.id, clientes.nome, clientes.email, clientes.senha, permissao.nome AS cargo
         FROM clientes
         JOIN permissao ON clientes.id_cargo_fk = permissao.id
         WHERE clientes.email = ?";
-        $stmt = $conn->prepare($MYsql);
+        $stmt = $connect->prepare($MYsql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if($cliente = $result->fetch_assoc()) {
-
+        
             if(passwordController::validateHash($senha, $cliente['senha'])) {
                 unset($cliente['senha']);
-                return $cliente;
+                return $cliente;  
             }
-            return false;
+
+        return false;
         }
     }
 }

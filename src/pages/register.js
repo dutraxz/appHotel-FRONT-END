@@ -1,6 +1,7 @@
-import { createRequest } from "../api/clientesAPI.js";
+import { createRequest } from "../api/clienteAPI.js";
 import LoginForm from "../components/loginForm.js";
 import Navbar from "../components/Navbar.js";
+import Footer from "../components/Footer.js";
 
 export default function renderRegisterPage() {
     //Renderiza a navbar
@@ -8,6 +9,11 @@ export default function renderRegisterPage() {
     nav.innerHTML = '';
     const navbar = Navbar();
     nav.appendChild(navbar);
+    
+    const rodape = document.getElementById('rodape');
+    rodape.innerHTML = '';
+    const footer = Footer();
+    rodape.appendChild(footer);
 
     //Obtém o fomrulário base de LoginForm
     const loginFormContainer = LoginForm();
@@ -20,26 +26,26 @@ export default function renderRegisterPage() {
     titulo.style.textAlign = 'center';
 
     const formulario = loginFormContainer.querySelector('form');
-    const btnSubmit = loginFormContainer.querySelector('button');
+    const btnSubmit = formulario.querySelector('button');
     btnSubmit.textContent = 'Register';
 
+    // Cria campos extras
     // Adiciona o campo de 'Nome' antes do campo de e-mail
     const inputNome = document.createElement('input');
     inputNome.type = 'text';
-    inputNome.placeholder = "your name";
+    inputNome.placeholder = "Your name";
     inputNome.className = 'form-control mb-3';
     inputNome.required = true;
 
-
-    const inputCpf = document.createElement('input');
-    inputCpf.type = 'text';
-    inputCpf.placeholder = "your cpf";
-    inputCpf.className = 'form-control mb-3';
-    inputCpf.required = true;
+    const inputCPF = document.createElement('input');
+    inputCPF.type = 'text';
+    inputCPF.placeholder = "Your CPF";
+    inputCPF.className = 'form-control mb-3';
+    inputCPF.required = true;
 
     const inputTelefone = document.createElement('input');
     inputTelefone.type = 'text';
-    inputTelefone.placeholder = "your number";
+    inputTelefone.placeholder = "Your phone";
     inputTelefone.className = 'form-control mb-3';
     inputTelefone.required = true;
 
