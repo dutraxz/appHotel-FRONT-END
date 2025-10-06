@@ -54,7 +54,7 @@ class ClienteModel{
         FROM clientes
         JOIN permissao ON clientes.id_cargo_fk = permissao.id
         WHERE clientes.email = ?";
-        $stmt = $connect->prepare($MYsql);
+        $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();

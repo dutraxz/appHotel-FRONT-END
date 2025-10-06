@@ -1,4 +1,4 @@
-import { createRequest } from "../api/clienteAPI.js";
+import { createRequest } from "../api/clienteAPI.js"
 import LoginForm from "../components/loginForm.js";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
@@ -53,7 +53,7 @@ export default function renderRegisterPage() {
     const inputSenha = formulario.querySelector('input[type="password"]');
 
     formulario.insertBefore(inputNome, inputEmail);
-    formulario.insertBefore(inputCpf, inputEmail);
+    formulario.insertBefore(inputCPF, inputEmail);
     formulario.insertBefore(inputTelefone, inputEmail);
 
     // Adiciona o campo 'Confirmar Senha' após o campo de senha
@@ -75,7 +75,7 @@ export default function renderRegisterPage() {
     formulario.addEventListener("submit", async(e)=> {
         e.preventDefault();
         const nome = inputNome.value.trim();
-        const cpf = inputCpf.value.trim();
+        const cpf = inputCPF.value.trim();
         const telefone = inputTelefone.value.trim();
         const email = inputEmail.value.trim();
         const senha = inputSenha.value.trim();

@@ -18,7 +18,7 @@
     if (dataFim) params.set("dataFim", dataFim);
     if (qtd !== null && qtd !== "") params.set("qtd", String(qtd));
 
-    const url = `api/room/disponivel?${params.toString()}`;
+    const url = `api/quarto/disponivel?${params.toString()}`;
 
     const response = await fetch(url, {
         method: "GET",

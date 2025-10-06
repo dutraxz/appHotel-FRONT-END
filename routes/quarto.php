@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET"){
         }
     }else{
             QuartoController::listarTodos($conn);
-    
+    }
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
@@ -29,7 +29,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
         QuartoController::delete($conn, $id);
     }else{
         jsonResponse(['messagem' =>'É necessario passar o ID'], 400);
-    }   
+    }
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){

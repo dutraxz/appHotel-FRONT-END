@@ -1,4 +1,4 @@
-import Navbar from "../components/NavBar.js";
+import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 import CartHeader from "../components/CartHeader.js";
 import CartRoomCard from "../components/CartRoomCard.js";
@@ -15,49 +15,49 @@ export default function renderCartPage() {
     divRoot.innerHTML = '';
 
     // Dados de exemplo baseados na imagem
-    const roomsData = [
-        {
-            id: 1,
-            category: "Quarto Duplo com Banheiro Privativo",
-            bedConfig: "1 cama de solteiro 🛏️ e 1 cama de casal 🛏️",
-            occupancy: "👤👤",
-            originalPrice: 1220,
-            price: 1110,
-            taxes: "+R$ 2 em impostos e taxas",
-            discount: 9
-        },
-        {
-            id: 2,
-            category: "Quarto Duplo",
-            bedConfig: "1 cama de casal 🛏️",
-            occupancy: "👤👤",
-            originalPrice: 2646,
-            price: 2381,
-            taxes: "Impostos e taxas incluídos",
-            discount: 10,
-            genius: true
-        },
-        {
-            id: 3,
-            category: "Quarto Duplo com Banheiro Privativo",
-            bedConfig: "1 cama de solteiro 🛏️ e 1 cama de casal 🛏️",
-            occupancy: "👤👤",
-            originalPrice: 1220,
-            price: 1110,
-            taxes: "+R$ 2 em impostos e taxas"
-        },
-        {
-            id: 4,
-            category: "Quarto Duplo",
-            bedConfig: "1 cama de casal 🛏️",
-            occupancy: "👤👤",
-            originalPrice: 2646,
-            price: 2381,
-            taxes: "Impostos e taxas incluídos",
-            discount: 10,
-            genius: true
-        }
-    ];
+    // const roomsData = [
+    //     {
+    //         id: 1,
+    //         category: "Quarto Duplo com Banheiro Privativo",
+    //         bedConfig: "1 cama de solteiro 🛏️ e 1 cama de casal 🛏️",
+    //         occupancy: "👤👤",
+    //         originalPrice: 1220,
+    //         price: 1110,
+    //         taxes: "+R$ 2 em impostos e taxas",
+    //         discount: 9
+    //     },
+    //     {
+    //         id: 2,
+    //         category: "Quarto Duplo",
+    //         bedConfig: "1 cama de casal 🛏️",
+    //         occupancy: "👤👤",
+    //         originalPrice: 2646,
+    //         price: 2381,
+    //         taxes: "Impostos e taxas incluídos",
+    //         discount: 10,
+    //         genius: true
+    //     },
+    //     {
+    //         id: 3,
+    //         category: "Quarto Duplo com Banheiro Privativo",
+    //         bedConfig: "1 cama de solteiro 🛏️ e 1 cama de casal 🛏️",
+    //         occupancy: "👤👤",
+    //         originalPrice: 1220,
+    //         price: 1110,
+    //         taxes: "+R$ 2 em impostos e taxas"
+    //     },
+    //     {
+    //         id: 4,
+    //         category: "Quarto Duplo",
+    //         bedConfig: "1 cama de casal 🛏️",
+    //         occupancy: "👤👤",
+    //         originalPrice: 2646,
+    //         price: 2381,
+    //         taxes: "Impostos e taxas incluídos",
+    //         discount: 10,
+    //         genius: true
+    //     }
+    // ];
 
     // Criar container principal do carrinho
     const cartContainer = document.createElement('div');

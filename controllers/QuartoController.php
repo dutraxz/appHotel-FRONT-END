@@ -1,25 +1,19 @@
 <?php
 require_once __DIR__ . "/../models/QuartoModel.php";
-require_once "ValidadorController.php";
+require_once "ValidatorController.php";
 
 
 class QuartoController{
-     public static $labels = ['nome', 'numero', 'camaCasal', 'camaSolteiro', 'preco', 'disponivel'];
      
     public static function criar($conn, $data){
-        $validar = ValidadorController::issetData($data, self::$labels);
-
-        if( !empty($validar) ){
-            $dados = implode(", ", $validar);
-            return jsonResponse(['message'=>"Erro, Falta o campo: " .$dados], 400);
-        }
+        ValidatorController::validador_data($data, ["nome", "numero", "camaCasal", "camaSolteiro", "preco", "disponivel"]);
 
         $result = QuartoModel::criar($conn, $data);
         if($result){
             return jsonResponse(['message' => "Quarto criado com sucesso"]);
         }
         else{
-        return jsonResponse(['message' => "Erro ao criar Quarto"]);
+        return jsonResponse(['message' => "Erro ao criar Quarto"]); 
         }
     }
 
@@ -59,7 +53,10 @@ class QuartoController{
 
     public static function buscarDisponiveis($conn, $data){
 
-        ValidadorController::validate_data($data, ["dataInicio", "dataFim", "qtd"]);
+        ValidatorController::validador_data($data, ["dataInicio", "dataFim", "qtd"]);
+
+        $data["dataInicio"] = ValidatorController::dataHora($data["dataInicio"], 14);
+        $data["dataFim"] = ValidatorController::dataHora($data["dataFim"], 12);
         
         $result = QuartoModel::buscarDisponiveis($conn, $data);
         if($result){

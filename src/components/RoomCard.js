@@ -46,6 +46,7 @@ export default function RoomCard(index) {
         </div>
     </div>
 
+
     `;
     return card;
 }

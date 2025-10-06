@@ -1,5 +1,5 @@
-import { quartosDisponivelRequest } from "../api/roomAPI.js";
-import DataSelector from "../components/DataSelector.js";
+import { quartosDisponivelRequest } from "../api/quartoAPI.js";
+import DataSelector from "../components/DateSelector.js";
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
 import RoomCard from "../components/RoomCard.js";
@@ -28,8 +28,8 @@ import Footer from "../components/Footer.js";
             e.preventDefault();
             
             //teste
-            const dataInicio = "2025-11-22";
-            const dataFim = "2025-11-24";
+            const dataInicio = "2025-09-10";
+            const dataFim = "2025-09-15";
             const qtd = 2;
             
             try{

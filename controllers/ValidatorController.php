@@ -1,5 +1,5 @@
 <?php
-class ValidadorController{
+class ValidatorController{
 
     public static function validador_data($data, $labels){
         $pendets = [];

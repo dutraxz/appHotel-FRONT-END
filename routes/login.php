@@ -8,11 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"){
     $data = json_decode(file_get_contents('php://input'), true);
     
 
-    if($opcao = "cliente"){ //login Cliente
+    if($opcao == "cliente"){ //login Cliente
     authController::loginCliente($conn, $data);
     
 }
-    elseif($opcao = "funcionario"){ //login Funcionário
+    elseif($opcao == "funcionario"){ //login Funcionário
     authController::login($conn, $data);
 }
 //teste
