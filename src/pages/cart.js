@@ -62,7 +62,7 @@ export default function renderCartPage() {
     // Criar container principal do carrinho
     const cartContainer = document.createElement('div');
     cartContainer.className = 'cart-container';
-    cartContainer.style.marginTop = '10%';
+    cartContainer.style.marginTop = '30%';
 
     // Adicionar cabeçalho
     const cartHeader = CartHeader();
