@@ -87,6 +87,7 @@ export default function renderRegisterPage() {
             console.log("Erro inesperado!");
         }
     });
-
-    return loginFormContainer;
+    const divRoot = document.getElementById('root');
+    divRoot.innerHTML = '';
+    divRoot.appendChild(loginFormContainer);
 }
