@@ -1,6 +1,6 @@
 <?php
 #require_once "../config/database.php";
-require_once __DIR__ . "/../controllers/authController.php";
+require_once __DIR__ . "/../controllers/AuthController.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] === "POST"){
@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"){
     
 
     if($opcao == "cliente"){ //login Cliente
-    authController::loginCliente($conn, $data);
+    AuthController::loginCliente($conn, $data);
     
 }
     elseif($opcao == "funcionario"){ //login Funcionário
-    authController::login($conn, $data);
+    AuthController::login($conn, $data);
 }
 //teste
     // elseif ($_SERVER['REQUEST_METHOD'] === "PUT"){

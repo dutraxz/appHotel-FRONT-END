@@ -37,7 +37,9 @@
         const msg = data?.menssage || "Falha ao  buscar quartos disponiveis!";
         throw new Error(msg);
     }
-    const quartos = Array.isArray(data?.Quartos) ? data.Quartos : [];
+     const quartos = Array.isArray(data?.Quartos)
+        ? data.Quartos
+        : (Array.isArray(data) ? data : []);
     console.log(quartos);
     return quartos;
 

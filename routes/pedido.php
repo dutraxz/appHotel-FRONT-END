@@ -13,6 +13,8 @@ elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = json_decode(file_get_contents('php://input'), true);
     PedidoController::criar($conn, $data);
 }
+
+
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $segmentos[2] ?? null;
    

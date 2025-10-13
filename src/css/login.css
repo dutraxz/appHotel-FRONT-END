@@ -1,4 +1,4 @@
-/* src/css/register.css */
+//src/css/register.css
 
 input{
     border-style: solid ;
@@ -93,4 +93,4 @@ input[type="password"]:focus {
 .btn-link:hover {
     color: #0056b3;
     text-decoration: underline;
-}
+}//

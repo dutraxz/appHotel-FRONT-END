@@ -1,95 +1,17 @@
-/* src/css/register.css
-input{
-    border-style: solid ;
-    border-color: rgb(0, 89, 255);
+/* Estilização dos inputs */
+input {
+    border-style: solid;
+    border-color: var(--secondary-color); /* Roxo vibrante */
     border-radius: 10px;
     margin-bottom: 15px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    width: 100%; /* Garante que os inputs ocupem toda a largura */
 }
+
+/* Foco nos inputs */
 input:focus {
     outline: none;
-    border: 2px solid rgb(0, 89, 255);
-
-}
-
-.btn-primary:hover{
-    background-color: rgb(43, 90, 143);
-    border-color: rgb(50, 90, 153);
-}
-/* Remove a borda do card */
-.card {
-    border: none !important;
-    border-radius: 15px; /* Deixa as bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
-}
-
-/* Estilização do título */
-.titulo {
-    color: #1a237e; /* Azul marinho escuro */
-    font-weight: 700;
-    font-size: 2.5rem;
-    position: relative;
-    padding-bottom: 30px; /* Espaço para o sublinhado */
-}
-
-.titulo::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px; /* Largura do sublinhado */
-    height: 3px;
-    background-color: #0056b3; /* Cor do sublinhado, um azul vibrante */
-    border-radius: 5px;
-}
-
-/* src/css/register.css */
-
-/* Estilização dos inputs */
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    border-radius: 5px;
-    border: 1px solid #ffffff;
-    transition: all 0.3s ease; /* Transição suave para o foco */
-    padding: 10px 15px;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-    outline: none;
-    border-color: #ffffff; /* Borda azul ao focar */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra de foco azul */
-}
-
-/* src/css/register.css */
-
-/* Estilo para o botão principal (Cadastrar) */
-.btn-primary {
-    background-color: #1a237e; /* Azul marinho */
-    border-color: #1a237e;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    padding: 12px 20px;
-}
-
-.btn-primary:hover {
-    background-color: #0d1252; /* Azul marinho mais escuro no hover */
-    border-color: #0d1252;
-    transform: translateY(-2px); /* Efeito de "levantar" no hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilo para o botão secundário (Voltar ao Login) */
-.btn-link {
-    color: #007bff;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.btn-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
+    border: 2px solid var(--secondary-color); /* Roxo vibrante */
+    box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.25); /* Sombra roxa */
 }
