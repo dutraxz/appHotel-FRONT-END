@@ -60,9 +60,9 @@ class QuartoController{
         
         $result = QuartoModel::buscarDisponiveis($conn, $data);
         if($result){
-            return jsonResponse(['Quartos'=>$result]);    
+            return jsonResponse(['Quartos'=> $result]);    
         }else{
-            return jsonResponse(['message'=>'asdsfaf'], 400);
+            return jsonResponse(['message'=>"não existe quartos disponiveis"], 400);
         }
     }
 }
