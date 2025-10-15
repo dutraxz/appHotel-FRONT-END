@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /siteVictor/
+RewriteBase /appHotel-FRONT-END/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

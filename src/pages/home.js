@@ -20,25 +20,28 @@ import CardLounge from "../components/Cardlounge.js";
         const divRoot = document.getElementById('root');
         root.innerHTML = '';
 
+         // Adicionar hero section
         const hero = Hero();
         divRoot.appendChild(hero);
         
+        // Adicionar seletor de datas
         const dateSelector = DataSelector();
         divRoot.appendChild(dateSelector);
 
+        // Obter elementos do formulário
+        const guestAmount = dateSelector.querySelector('select');
+        const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date"]');
+        const btnSearchRoom = dateSelector.querySelector('button');
+
         //Constante que aloca o valor da data de hoje
         const dataHoje = new Date().toISOString().split("T")[0];
-        const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date"]');
         dateCheckIn.min = dataHoje;
         dateCheckOut.min = dataHoje; 
-
-        const guestAmount = dateSelector.querySelector('select');
-        const btnSearchRoom = dateSelector.querySelector('button');
+        
 
         // Criar container para cards de infraestrutura (lounge)
         const infraGroup = document.createElement('div');
         infraGroup.className = 'lounge-cards-container';
-
         const tituloInfra = document.createElement('h2');
         tituloInfra.textContent = "Conheça nosso hotel ";
         tituloInfra.style.textAlign = "center";
@@ -78,13 +81,18 @@ import CardLounge from "../components/Cardlounge.js";
     //mudar o calendario de chekOut
 
     dateCheckIn.addEventListener("change", async (e) => {
-        if (this.value) {
-            const minimoDataCheckout = dataMinimaCheckOut(this.value);
+        //caso haja um valor valido em dateCheck-in
+        if (dateCheckIn.value) {
+            const minimoDataCheckout = dataMinimaCheckOut(dateCheckIn.value);
             dateCheckOut.min = minimoDataCheckout;
-        }
-    
 
-    });
+        //Caso haja uma data invalida em check-out 
+        if (dateCheckOut.value && dateCheckOut.value <= dateCheckIn.value) {
+            dateCheckOut.value = "";
+            Modal("A data de check-out deve ser posterior à data de check-in.");
+        }
+    }
+});
         
     btnSearchRoom.addEventListener('click', async (e) =>{
         e.preventDefault();
@@ -143,6 +151,7 @@ import CardLounge from "../components/Cardlounge.js";
     // Adicionar containers ao root: primeiro infraestrutura, depois resultados
     divRoot.appendChild(infraGroup);
     divRoot.appendChild(cardGroup);
+    divRoot.appendChild(infraGroup);
 
     // Limpar e renderizar footer
     const rodape = document.getElementById('rodape');

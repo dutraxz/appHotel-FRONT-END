@@ -2,6 +2,7 @@ import renderCartPage from './pages/cart.js';
 import renderHomePage from './pages/home.js';
 import renderLoginPage from './pages/login.js';
 import renderRegisterPage from './pages/register.js';
+import renderRegisterRoom from './pages/register-room.js';
 
 //Configuração de rotas
 const routes = {
@@ -9,7 +10,8 @@ const routes = {
     "/login": renderLoginPage,
     "/register": renderRegisterPage,
     "/home": renderHomePage,
-    "/cart": renderCartPage
+    "/cart": renderCartPage,
+    "/register-room": renderRegisterRoom
     //Novas páginas aqui adicionadas conforme desenvolvidas
 };
 
