@@ -48,9 +48,22 @@ class ReservaModel{
             $id
         );
         return $stmt->execute();
-
     }
-
+    
+   public static function temConflito($conn, $id_quarto_fk, $dataInicio, $dataFim) {
+            $MYsql = "SELECT 1 
+            FROM reservas r
+            WHERE r.id_quarto_fk = ? 
+            AND (r.dataFim >= ? AND r.dataInicio <= ?) 
+            LIMIT 1";
+            
+            $stmt = $conn->prepare($MYsql);
+            $stmt->bind_param("iss", $idQuarto, $inicio, $fim);
+            $stmt->execute();
+            $linhaAfetada = $stmt->get_result()->num_rows > 0;
+            $stmt->close();
+            return $linhaAfetada;
+}
     
         public static function listarPorPedido($conn, $id_pedido){
             $MYsql = "SELECT * FROM reservas WHERE id_pedido_fk = ?";

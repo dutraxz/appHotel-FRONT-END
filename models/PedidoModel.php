@@ -7,105 +7,93 @@ class PedidoModel{
         $MYsql = "INSERT INTO pedidos (id_usuario_fk, id_cliente_fk, pagamento) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("iis",
-        $data["id_usuario_fk"],
-        $data["id_cliente_fk"],
-        $data["pagamento"]
+            $data["id_usuario_fk"],
+            $data["id_cliente_fk"],
+            $data["pagamento"]
          );
         $resultado = $stmt->execute();
-            if($resultado){
-                return $connect-> insert_id;
+        if($resultado){
+            return $conn->insert_id;
         }   
         return false;
+    }
 
     public static function listarTodos($conn){
         $MYsql = "SELECT * FROM pedidos";
-        $result = $conn->query($MYsql);
-        return $result->fetch_all(MYSQLI_ASSOC);
+        $resultado = $conn->query($MYsql);
+        return $resultado->fetch_all(MYSQLI_ASSOC);
     }
 
     public static function criarOrdem($conn, $data){
-        $id_cliente = $data['id_cliente_fk'];
+        $id_cliente_fk = $data['id_cliente_fk'];
         $pagamento = $data['pagamento'];
-        $id_usuario = isset($data['id_usuario_fk']) ?
-        $data['id_usuario_fk'] : null;
-        $reservasResumo = [];
+        $id_usuario_fk = isset($data['id_usuario_fk']);
+
+        $reservas = [];
+        $reservou = false;
 
         $conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
 
         try {
             $pedido_id = self::criar($conn, [
-                "id_usuario_fk" => $id_usuario,
-                "id_cliente_fk" => $id_cliente,
+                "id_usuario_fk" => $id_usuario_fk,
+                "id_cliente_fk" => $id_cliente_fk,
                 "pagamento" => $pagamento
             ]);
+
             if(!$pedido_id){
                 throw new RuntimeException("Erro ao criar o pedido.");
             }
+
             foreach($data['quartos'] as $quarto){
-                $idQuarto= $quarto["id"];
+                $id= $quarto["id"];
                 $inicio = $quarto["dataInicio"];
                 $fim = $quarto["dataFim"];
 
                  // Bloqueia o quarto na transação
-                if(!QuartoModel::bloquearPorId($conn, $idQuarto)){
-                    $reservasResumo[] = [
-                        "id_quarto_fk" => $idQuarto,
-                        "status" => "indisponivel",
-                        "mensagem" => "Quarto inexistente e(ou) indisponível"
-                    ];
+                if(QuartoModel::bloquearPorId($conn, $id)){
+                    $reservas[] = "Quarto {$id} Indisponivel";
                     continue;
                 }
-
-                // Verifica conflito para o intervalo solicitado
-                $sqlConf = "SELECT 1 FROM reservas r WHERE r.id_quarto_fk = ? AND (r.dataFim >= ? AND r.dataInicio <= ?) LIMIT 1";
-                $stmt = $connect->prepare($sqlConf);
-                $stmt->bind_param("iss", $idQuarto, $inicio, $fim);
-                $stmt->execute();
-                $temConflito = $stmt->get_result()->num_rows > 0;
-                $stmt->close();
-
-                if($temConflito){
-                    $reservasResumo[] = [
-                        "id_quarto_fk" => $idQuarto,
-                        "status" => "conflito",
-                        "mensagem" => "Datas em conflito para este quarto"
-                    ];
+                if(!RerservaModel::temConflito($conn, $id, $dataInicio, $dataFim)){
+                    $reservas[] = "Quarto {$id} já esta reservado!";
                     continue;
                 }
 
                 $ReservaLiberada = ReservaModel::criar($conn, [
                     "id_adicional_fk" => null,
-                    "id_quarto_fk" => $idQuarto,
-                    "id_pedido_fk" => $pedidoId,
+                    "id_quarto_fk" => $id,
+                    "id_pedido_fk" => $pedido_id,
                     "dataInicio" => $inicio,
-                    "dataFim" => $fim
+                    "dataFim" => $fim,
                 ]);
 
-                $reservasResumo[] = [
-                    "id_quarto_fk" => $idQuarto,
-                    "status" => $okReserva ? "reservado" : "erro",
-                    "mensagem" => $okReserva ? "Reserva criada" : "Falha ao reservar"
+                $reservou = true;
+                $reservas[] = [
+                    "reserva_id" => $conn->insert_id,
+                    "id_quarto_fk" => $id
                 ];
+
+            }
+                
+            if ($reservou == true){
+                $conn->commit();
+                return [
+                    "id_pedido_fk" => $pedido_id,
+                    "reservas" => $reservas,
+                    "messagem" => "Reservas criadas com sucesso!!"
+                ];
+            }else{
+                throw new RuntimeException("Pedido nao realizado, nenhum quarto reservado");
             }
 
-            $conn->commit();
-            return [
-                "pedido" => $pedidoId,
-                "reservas" => $reservasResumo
-            ];
         } catch (\Throwable $th) {
-            $connect->rollback();
+            try {
+                $conn->rollback();
+              } catch (\Throwable $th2) {}
             throw $th;
         }
-    }
 
-        } catch (\Throwable $ok) {
-            try {
-                $connect->rollback();
-            } catch (\Throwable $ok) {
-                throw $ok;
-            }
-        }
     }
 
     public static function buscarPorId($conn, $id){
@@ -115,6 +103,7 @@ class PedidoModel{
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }
+
     public static function deletar($conn, $id){
         $MYsql = "DELETE FROM pedidos WHERE id = ?";
         $stmt = $conn->prepare($MYsql);
@@ -133,5 +122,6 @@ class PedidoModel{
         );
         return $stmt->execute();
     }
+
 }
 ?>

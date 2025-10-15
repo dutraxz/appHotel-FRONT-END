@@ -1,7 +1,6 @@
 export default function CartHeader() {
     const header = document.createElement('div');
     header.className = "cart-header-container";
-    
     header.innerHTML = `
         <div class="container-fluid">
             <div class="row cart-header-row">

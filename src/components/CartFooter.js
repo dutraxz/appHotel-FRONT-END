@@ -1,7 +1,6 @@
 export default function CartFooter() {
     const footer = document.createElement('div');
     footer.className = "cart-footer-container";
-    
     footer.innerHTML = `
         <div class="container-fluid">
             <div class="row cart-footer-row align-items-center">

@@ -10,8 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === "GET"){
     }
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
+    $id = segmentos[2] ?? null;
     $data = json_decode(file_get_contents('php://input'), true);
     PermissaoController::criar($conn, $data);
+
+else{
+    jsonResponse(['status'=>'erro','message'=>'Método não permitido'], 405);
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $segmentos[2] ?? null;

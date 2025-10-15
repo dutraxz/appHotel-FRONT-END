@@ -41,9 +41,9 @@ class ReservaController{
         }
     }
 
-    public static function listarPorPedido($conn, $id_pedido){
-        $reservasPedido = ReservaModel::listarPorPedido($conn, $id_pedido);
-        return jsonResponse($reservasPedido);
+    public static function listarPorPedido($conn, $pedido_id){
+        $result = ReservaModel::listarPorPedido($conn, $pedido_id);
+        return jsonResponse($result);
     }
 }
 ?>
