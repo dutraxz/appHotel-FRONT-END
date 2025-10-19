@@ -1,2 +1,4 @@
 config/config.php
 bootstrap/ 
+.vscode/extensions.json
+.vscode/settings.json
