@@ -15,10 +15,10 @@ class PedidoController{
     public static function criarOrdem($conn, $data){
         $data["id_usuario_fk"] = isset($data['id_usuario_fk']) ? $data['id_usuario_fk']: null;
 
-        ValidatorController::validate_data($data, ["id_cliente_fk", "pagamento", "quartos"]);
+        ValidatorController::validador_data($data, ["id_cliente_fk", "pagamento", "quartos"]);
 
         foreach($data['quartos'] as $quarto){
-            ValidatorController::validate_data($quarto, ["id", "dataInicio", "dataFim"]);
+            ValidatorController::validador_data($quarto, ["id", "dataInicio", "dataFim"]);
 
             // Normaliza horas padrão
             $quarto["dataInicio"] = ValidatorController::dataHora($quarto["dataInicio"], 14);
