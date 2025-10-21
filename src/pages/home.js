@@ -151,7 +151,6 @@ import CardLounge from "../components/Cardlounge.js";
     // Adicionar containers ao root: primeiro infraestrutura, depois resultados
     divRoot.appendChild(infraGroup);
     divRoot.appendChild(cardGroup);
-    divRoot.appendChild(infraGroup);
 
     // Limpar e renderizar footer
     const rodape = document.getElementById('rodape');

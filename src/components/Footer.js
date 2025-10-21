@@ -117,7 +117,7 @@ export default function Footer() {
   <!-- Section: Links  -->
 
   <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(255, 0, 0, 0.05);">
+  <div class="text-center p-4" style="background-co lor: rgba(255, 0, 0, 0.05);">
     © 2025 Copyright - Direitos Reservados:
     <a class="text-reset fw-bold" href="https://novotel.com.br/">novotel.com.br</a>
   </div>

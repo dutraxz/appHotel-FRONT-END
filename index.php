@@ -18,7 +18,7 @@ if($erroDB){
 //parse_url analisa a url e devolve seus componentes (QUERY, PATH, HOST, ETC) que for solicitado
 //_SERVER variavel superglobal que contem informações sobre cabeçalhos, caminhos e localizações de scripts
 //REQUEST_URI retorna a parte da URL após o nome do domínio
-//PHO_URL_PATH retorna o caminho da URL
+//PHP_URL_PATH retorna o caminho da URL
 
 $uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 //Método da requisição (GET, POST, PUT, DELETE, etc.)

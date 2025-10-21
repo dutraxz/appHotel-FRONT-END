@@ -1,4 +1,4 @@
-import NavBar from "../components/NavBar.js";
+import NavBar from "../components/Navb  ar.js";
 import Footer from "../components/Footer.js";
 import CartHeader from "../components/CartHeader.js";
 import CartRoomCard from "../components/CartRoomCard.js";

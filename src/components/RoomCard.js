@@ -1,3 +1,17 @@
+function calculoDiaria (checkIn, checkOut) {
+    const checkIn = "2026-01-01";
+    const checkOut = "2026-01-08";
+
+    const [yin, min, din] = String(checkIn).split("-").map(Number);
+    const [yout, mout, dout] = String(checkOut).split("-").map(Number);
+    // console.log ("Che-in formatado" + yin + min + din + "\nCheck-out formatado:" +
+    //     yout + mout + dout);
+
+    const tzin = Date.UTC(yin, min -1, din);
+    const tzout = Date.UTC(yout, mout -1, dout);
+
+    return Math.floor((tzout - tzin) / (1000 * 60 * 60 * 24));
+}
 export default function RoomCard(itemCard, index = 0) {
     const {
         nome,
@@ -10,7 +24,7 @@ export default function RoomCard(itemCard, index = 0) {
     const title = nome;
 
     const camas = [
-        (camaCasal != null ? _`${camaCasal} cama(s) de casal` : null),
+        (camaCasal != null ? `${camaCasal} cama(s) de casal` : null),
         (camaSolteiro != null ? `${camaSolteiro} cama(s) de solteiro` : null),
     ].filter(Boolean).join(' - ');
     
@@ -57,13 +71,11 @@ export default function RoomCard(itemCard, index = 0) {
             <h5 class="card-title">${title}</h5>
             <ul class="list-unstyled mb-2">
            ${camas? `<li>${camas}` : ""}
-           ${preco != null ? `<li>Preco: R$ ${Number(preco).toFixed(2)}</li>` : ""}
+           ${preco != null ? `<li>Preço - Diaria: R$ ${Number(preco).toFixed(2)}</li>` : ""}
             </ul>
             <a href="#" class="btn btn-primary">Reservar</a>
         </div>
     </div>
-
-
     `;
     return card;
 }

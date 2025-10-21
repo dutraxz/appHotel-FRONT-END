@@ -1,4 +1,4 @@
-export default function CartRoomCard(room, index) {
+export default function CartRoomCard(quarto, index) {
     const card = document.createElement('div');
     card.className = "cart-room-card";
     
