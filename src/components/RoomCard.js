@@ -59,7 +59,7 @@ export default function RoomCard(itemCard, index = 0) {
            ${camas? `<li>${camas}` : ""}
            ${preco != null ? `<li>Preco: R$ ${Number(preco).toFixed(2)}</li>` : ""}
             </ul>
-            <a href="#" class="btn btn-primary">Reservar</a>
+            <a href="#" class="btn btn-primary mt-auto">Reservar</a>
         </div>
     </div>
 
