@@ -56,7 +56,7 @@ if($route != "api") {
 }elseif($route === "api") {
     //Verifica se a sub-rota é válida e carrega o arquivo correspondente para tratar a requisição
     //A função in_array verifica se um valor ($subRoute) existe em um array (lista de rotas válidas)
-    if(in_array($subRoute, [ "login", "quarto", "cliente", "pedido", "reserva", "adicional"] )){
+    if(in_array($subRoute, [ "login", "quarto", "cliente", "pedido", "reserva", "adicional", "imagem"] )){
         //Carrega o arquivo de rotas correspondente à sub-rota
         require "routes/${subRoute}.php";
     }else{
