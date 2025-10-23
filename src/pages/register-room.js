@@ -3,8 +3,8 @@ import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 
 export default function renderRegisterRoomPage() {
-    const root = document.getElementById('main-content');
-    root.innerHTML= ''; 
+    const root = document.getElementById('root');
+    root.innerHTML = ''; 
 
     // Navbar
     const nav = document.getElementById('navbar');

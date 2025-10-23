@@ -3,11 +3,11 @@ export async function PedidoFinalizado(items) {
     const body = {
         //Por enquanto todo pagamento será via pix, até termos um frot para usuário
         //setar a forma de pagametno que desejar
+        id_cliente_fk: 7,
         pagamento: "pix",
         quartos: items.map(it => (
             {
-
-                id: it.roomId,
+                id: it.quarto.id,
                 inicio: it.checkIn,
                 fim: it.checkOut
             }
@@ -24,9 +24,21 @@ export async function PedidoFinalizado(items) {
         body: JSON.stringify(body)
     });
 
-    if(!res.ok) {
-        const message = 'Erro ao enviar pedido: ${res.status}';
-        throw new Error(message);
+    let data = null;
+    try {
+        //retorno da requisição para  variável data
+        data = await response.json();
     }
-    return res.json();
+    catch {
+        // Se nao for JSON valido, data permanece null
+        data = null;
+    }
+    if (!data) {
+        const message = 'Erro ao enviar pedido: ${response}';
+        return { ok: false, token: null, raw: data, message };
+    }
+    return {
+        ok: true,
+        raw: data
+    }
 }

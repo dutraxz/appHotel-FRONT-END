@@ -18,7 +18,7 @@ if($erroDB){
 //parse_url analisa a url e devolve seus componentes (QUERY, PATH, HOST, ETC) que for solicitado
 //_SERVER variavel superglobal que contem informações sobre cabeçalhos, caminhos e localizações de scripts
 //REQUEST_URI retorna a parte da URL após o nome do domínio
-//PHO_URL_PATH retorna o caminho da URL
+//PHP_URL_PATH retorna o caminho da URL
 
 $uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 //Método da requisição (GET, POST, PUT, DELETE, etc.)
@@ -56,7 +56,7 @@ if($route != "api") {
 }elseif($route === "api") {
     //Verifica se a sub-rota é válida e carrega o arquivo correspondente para tratar a requisição
     //A função in_array verifica se um valor ($subRoute) existe em um array (lista de rotas válidas)
-    if(in_array($subRoute, [ "login", "quarto", "cliente", "pedido", "reserva", "adicional"] )){
+    if(in_array($subRoute, [ "login", "quarto", "cliente", "pedido", "reserva", "adicional", "imagem"] )){
         //Carrega o arquivo de rotas correspondente à sub-rota
         require "routes/${subRoute}.php";
     }else{

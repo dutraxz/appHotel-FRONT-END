@@ -1,566 +1,558 @@
-/* ---------------------------------- */
-/* 1. VARIÁVEIS GLOBAIS E BODY        */
-/* ---------------------------------- */
-:root {
-    --primary-color: #0a4f8a;   /* Azul escuro principal */
-    --secondary-color: #007bff; /* Azul vibrante */
-    --light-blue: #f0f8ff;      /* Azul bem claro (fundo) */
-    --text-dark: #333;
-    --text-light: #ffffff;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-
-/* Importa a fonte que você estava usando */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-
-body {
-    font-family: "Lato", sans-serif;
-    line-height: 1.6;
-    color: var(--text-dark);
-    background-color: var(--light-blue);
-}
-
-#root {
-    background-color: var(--light-blue);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    gap: 0;
-    padding-bottom: 0;
-}
-
-/* --- NOVO ---
-   Esta classe é para páginas SEM hero banner (ex: Carrinho, Cadastrar Quarto)
-   Ela adiciona o espaço no topo para o navbar fixo.
-*/
-.page-content {
-    padding-top: 90px; /* 70px do navbar + 20px de espaço */
-    padding-bottom: 40px;
-}
-
-/* ---------------------------------- */
-/* 2. ESTILOS GERAIS (BOTÕES, INPUTS) */
-/* ---------------------------------- */
 .titulo {
     font-family: "Lato", sans-serif;
     font-weight: 700;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 30px; /* Aumentei a margem */
-    text-align: center;
+    font-style: normal;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
 .btn {
-    font-family: "Lato", sans-serif;
+    font-family: "Lato", sans-serif; /* Correção: Era "Latso" */
     font-weight: 700;
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-style: normal;
+    font-size: 17px;
+    color: white; /* Movido do final do arquivo para cá */
 }
 
-.btn-primary {
-    background-color: var(--secondary-color);
-    color: var(--text-light) !important;
+input {
+    border-style: solid;
+    border-color: rgb(117, 171, 233);
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
+    background-color: rgb(3, 65, 136);
+    border-color: rgb(3, 65, 136);
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="date"],
-input[type="search"],
-select {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 0.75rem;
-    font-size: 1rem;
+#root {
+    flex-direction: column;
+    gap: 10vh;
+    padding-bottom: 10vh;
+    background-color: rgba(243, 242, 242, 0.87);
 }
 
-input:focus, select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(10, 79, 138, 0.15);
-}
-
-/* ---------------------------------- */
-/* 3. COMPONENTE: NAVBAR              */
-/* ---------------------------------- */
-.navbar {
-    background: var(--text-light);
-    box-shadow: var(--shadow);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar .container-fluid {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.navbar .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color) !important;
-}
-.navbar .navbar-brand img {
-    width: 35px !important; /* Ajuste no tamanho da logo */
-    height: 35px !important;
-}
-
-.navbar .nav-link {
-    color: var(--primary-color) !important;
-    font-weight: 500;
-    margin: 0 0.5rem;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-    color: var(--secondary-color) !important;
-}
-
-.navbar .btn-outline-success {
-    color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-
-.navbar .btn-outline-success:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    color: var(--text-light);
-}
-
-/* ---------------------------------- */
-/* 4. COMPONENTE: HERO (CAROUSEL)     */
-/* ---------------------------------- */
+/*Hero Section*/
 .hero-frame {
-    overflow: hidden;
-    height: 70vh;
-    background: #000;
+    overflow: hidden; /*Impede que a imagem vaze do quadro*/
 }
 
-.hero img, .hero .carousel-item {
+.hero img, .hero {
+    /* Aplica propriedade cover para recortar parte da imagem (e não distorcê-la),
+    definindo seu ponto de foco a partir da propriedade object-position*/
     object-fit: cover;
     object-position: center;
     height: 70vh;
-    filter: brightness(0.8);
 }
 
+/*Responsividade media-query*/
 @media (max-width: 576px) {
-    .hero-frame, .hero img, .hero .carousel-item {
+    .hero img, .hero {
         height: 50vh;
     }
 }
 
-/* ---------------------------------- */
-/* 5. COMPONENTE: DATASELECTOR (BUSCA) */
-/* ---------------------------------- */
-.data-selector-container { 
+.cards {
+    display: flex;
+    flex-wrap: wrap; /* Correção: Era 'flex-direction: wrap' */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+.divDate{
     display: flex;
     justify-content: center;
-    padding: 2rem 1rem;
-    background: var(--light-blue);
+    gap: 15px;
+}
+
+/* Estilos específicos para os containers */
+.room-cards-container {
+    background: #f8f9fa ;
+    padding: 2rem 0;
+    margin: 0;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+/* DataSelector */
+.data-selector-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
 }
 
 .data-selector-card {
     background: #fff;
-    border-radius: 12px;
-    box-shadow: var(--shadow-lg);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(106, 27, 154, 0.15);
     padding: 2rem;
     display: flex;
-    gap: 1.5rem;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    max-width: 1100px;
+    gap: 2rem;
+    align-items: center;
+    max-width: 900px;
     width: 100%;
-    border: none;
+    border: 1px solid rgba(106, 27, 154, 0.1);
 }
 
 .dates-section {
     display: flex;
     gap: 1rem;
-    flex: 2;
+    flex: 1;
 }
 
-.date-input-group, .guests-section {
+.date-input-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     flex: 1;
 }
 
-.date-label, .guests-label {
+.date-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
 }
 
-.date-input, .guests-select {
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.date-label i {
+    font-size: 1rem;
+}
+
+.date-input {
+    padding: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
     font-size: 1rem;
     background: #fff;
     cursor: pointer;
+}
+
+.date-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(106, 27, 154, 0.1);
+}
+
+.date-input:hover {
+    border-color: var(--secondary-color);
+}
+
+.guests-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 200px;
+    position: relative;
+}
+
+.guests-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.guests-label i {
+    font-size: 1rem;
+}
+
+.guests-select {
     width: 100%;
+    padding: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: #fff;
+    cursor: pointer;
+}
+
+.guests-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(106, 27, 154, 0.1);
+}
+
+.guests-select:hover {
+    border-color: var(--secondary-color);
 }
 
 .search-section {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .search-btn {
-    background-color: var(--secondary-color);
+    background-color: blue;
     border: none;
-    color: var(--text-light);
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
+    color: black;
+    padding: 1rem 2rem;
+    border-radius: 12px;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
 }
 
 .search-btn:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
+    background-color: blue;
 }
 
-@media (max-width: 768px) {
-    .data-selector-card {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1rem;
-    }
-    .dates-section {
-        flex-direction: column;
-        width: 100%;
-    }
-    .search-btn {
-        width: 100%;
-        padding: 1rem;
-    }
-}
-
-/* ---------------------------------- */
-/* 6. COMPONENTE: ROOMCARD (Resultados) */
-/* ---------------------------------- */
-.room-cards-container {
-    background: var(--light-blue); /* Fundo da seção */
-    padding: 3rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    gap: 2rem;
-}
-
+/* Cards de quartos */
 .room-cards-container .card {
-    width: 20rem;
     border: none;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Para o mt-auto no botão funcionar */
-    flex-direction: column;
-}
-
-.room-cards-container .card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.room-cards-container .card img,
-.room-cards-container .card .carousel,
-.room-cards-container .card .carousel-inner,
-.room-cards-container .card .carousel-item img {
-    height: 220px !important;
-    object-fit: cover;
-}
-
-.room-cards-container .card-body {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Faz o card-body crescer */
 }
 
 .room-cards-container .card-title {
     color: var(--primary-color);
-    font-weight: 700;
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
-.room-cards-container .list-unstyled {
-    color: var(--text-dark);
+.room-cards-container .card-text {
+    color: #6c757d;
     line-height: 1.6;
     margin-bottom: 1.5rem;
-    flex-grow: 1; /* Empurra o botão para baixo */
 }
 
-/* ---------------------------------- */
-/* 7. COMPONENTE: CARDLOUNGE (home.js) */
-/* ---------------------------------- */
-/* --- ATUALIZADO --- */
-.lounge-cards-container {
-    background: #fff; /* Seção "Conheça" com fundo branco */
-    padding: 4rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    width: 100%;
-}
-
-.lounge-card {
-    width: 18rem;
-    height: 17rem;
+.room-cards-container .btn {
+    background:linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border: none;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    border-radius: 12px;
+    font-weight: 500;
 }
 
-.lounge-card img {
-    height: 10.2rem;
-    width: 100%;
-    object-fit: cover;
+.room-cards-container .btn:hover {
+    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
 }
 
-.lounge-card .lounge-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    background: #fff;
-    border-top: 1px solid #eee;
+/* Responsividade */
+@media (max-width: 768px) {
+    .room-cards-container, .data-selector-container {
+        padding: 1rem 0;
+    }
+    
+    .navbar-brand img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .hero-section {
+        height: 50vh;
+        min-height: 300px;
+    }
+    
+    .hero-section .carousel-control-prev,
+    .hero-section .carousel-control-next {
+        width: 8%;
+        margin: 0 10px;
+    }
+    
+    .data-selector-card {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .dates-section {
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .guests-section {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .search-btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
-.lounge-card .lounge-header h3 {
-    color: var(--primary-color);
-    font-size: 1.1rem !important;
-    font-weight: 700 !important;
-    margin: 0;
+@media (max-width: 480px) {
+    .data-selector-card {
+        padding: 1rem;
+        margin: 0 0.5rem;
+    }
+    
+    .date-input, .search-btn {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
 }
 
-.lounge-card .dropdown-menu {
-    border-radius: 0;
-    padding: 1rem;
-    border: none;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+/* Estilos para footer dentro do root */
+#rodape {
+    margin-top: auto;
+    flex-shrink: 0;
 }
 
-/* ---------------------------------- */
-/* 8. COMPONENTES: CART (Carrinho)    */
-/* ---------------------------------- */
+/* Carrinho */
 .cart-container {
     background: #fff;
     border-radius: 12px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin: 0 auto; /* Centraliza (margin-top será da classe .page-content) */
-    max-width: 1100px;
-    width: 95%;
+    margin: 2rem auto;
+    max-width: 1200px;
 }
 
 .cart-header-container {
     background: var(--primary-color);
-    color: var(--text-light);
-    padding: 1.5rem 2rem;
+    color: white;
+    padding: 1.5rem 0;
+}
+
+.cart-header-row {
+    margin: 0;
+    text-align: center;
 }
 
 .cart-header-title {
     margin: 0;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1.1rem;
 }
 
-.cart-room-card {
-    border-bottom: 1px solid #eee;
-    padding: 1.5rem 2rem;
+.rooms-list {
+    padding: 0;
 }
+
+.cart-room-card {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem 0;
+}
+
 .cart-room-card:last-child {
     border-bottom: none;
 }
 
+.cart-room-row {
+    margin: 0;
+    align-items: center;
+}
+
+.room-info {
+    padding-left: 1rem;
+}
+
 .room-category {
-    font-weight: 700;
-    color: var(--primary-color);
+    font-weight: 600;
+    color: var(--dark-color);
     margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
+}
+
+.bed-config {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.occupancy-info {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.price-info {
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #6c757d;
+    font-size: 0.9rem;
+    display: block;
 }
 
 .current-price {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: var(--secondary-color);
+    color: red; /* Correção: Era var(red) */
     display: block;
     margin: 0.25rem 0;
 }
 
+.taxes {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin: 0.25rem 0;
+}
+
+.discount-badge {
+    background: #28a745;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.genius-badge {
+    background: #007bff;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
 .cart-footer-container {
-    background: var(--light-blue);
-    padding: 1.5rem 2rem;
-    border-top: 1px solid #eee;
+    background: #f8f9fa;
+    padding: 1.5rem 0;
+    border-top: 1px solid #e9ecef;
+}
+
+.cart-footer-row {
+    margin: 0;
+    align-items: center;
 }
 
 .reserve-btn {
-    background: #28a745;
-    color: white !important;
-    font-weight: 700;
+    background: linear-gradient(45deg, green, red); /* Correção: Era var(green), var(red) */
+    border: none;
+    font-weight: 600;
     padding: 0.75rem 2rem;
     border-radius: 8px;
 }
+
 .reserve-btn:hover {
-    background: #218838;
-    transform: translateY(-2px);
+    background: linear-gradient(45deg, green, black); /* Correção: Era var(green), var(-black) */
+}
+
+.total-info {
+    text-align: right;
+    padding-right: 1rem;
 }
 
 .total-label {
     font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-dark);
+    font-weight: 600;
+    color: var(--dark-color);
     margin-right: 0.5rem;
 }
 
 .total-price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: red; /* Correção: Era var(red) */
 }
 
-/* ---------------------------------- */
-/* 9. COMPONENTE: FOOTER              */
-/* ---------------------------------- */
-footer {
-    background: var(--primary-color);
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: auto;
+/*
+    REMOVIDOS BLOCOS DUPLICADOS DE @media (max-width: 768px) E @media (max-width: 480px)
+*/
+
+/*
+    REMOVIDO BLOCO DUPLICADO INTEIRO DE /* Carrinho */
+
+
+/* Responsividade carrinho */
+@media (max-width: 768px) {
+    .cart-container {
+        margin: 1rem;
+        border-radius: 8px;
+    }
+    
+    .cart-header-title {
+        font-size: 0.9rem;
+    }
+    
+    .room-category {
+        font-size: 0.9rem;
+    }
+    
+    .bed-config {
+        font-size: 0.8rem;
+    }
+    
+    .current-price {
+        font-size: 1.1rem;
+    }
+    
+    .total-price {
+        font-size: 1.3rem;
+    }
+    
+    .reserve-btn {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .total-info {
+        text-align: center;
+    }
+
+
+.btn-group{
+    color:white;
+}
+}
+/* CardLounge */
+.lounge-card {
+    width: 10rem;
+    height: 17rem;
+    border: none;
+    box-shadow: 0 4px 20px rgba(106, 27, 154, 0.1);
+    overflow: hidden;
+    border-radius: 12px;
 }
 
-footer h6 {
-    color: var(--text-light);
-    font-weight: 700;
-}
-
-footer a, footer p, footer i {
-    color: rgba(255, 255, 255, 0.8) !important;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: var(--text-light) !important;
-    text-decoration: underline;
-}
-
-footer .border-bottom {
-    border-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-footer .text-muted {
-    color: rgba(255, 255, 255, 0.8) !important;
-}
-
-footer .text-center.p-4 {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: var(--text-light);
-}
-
-/* ---------------------------------- */
-/* 10. COMPONENTE: SPINNER E MODAL     */
-/* ---------------------------------- */
-.spinner-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+.lounge-card img {
+    height: 60%;
     width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    object-fit: cover;
+}
+
+.lounge-card .lounge-header {
     display: flex;
+    /* align-items: center; */
     justify-content: center;
-    align-items: center;
-    z-index: 9999;
 }
 
-.spinner-content {
-    color: var(--primary-color);
-    font-weight: 700;
-}
-
-.spinner-border {
-    color: var(--primary-color) !important;
-    width: 3rem;
-    height: 3rem;
-}
-
-.modal-header {
-    background: var(--primary-color);
-    color: var(--text-light);
-}
-
-.modal-header .btn-close {
-    filter: invert(1) grayscale(100%) brightness(200%);
-}
-
-.modal-footer .btn-primary {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-.modal-footer .btn-primary:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-/* ---------------------------------- */
-/* 11. PÁGINA: REGISTER-ROOM (FormRoom.js) */
-/* ---------------------------------- */
-/* --- NOVA SEÇÃO --- */
-/* Estiliza classes do Bootstrap usadas no FormRoom.js */
-.form-control {
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    padding: 0.75rem;
+.lounge-card .lounge-title {
     font-size: 1rem;
-    margin-bottom: 1rem; /* Mantém o espaçamento */
-}
-    
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(10, 79, 138, 0.15) !important;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
 }
 
-/* Estiliza o 'Disponível?' switch */
-.form-check-input {
-    border-color: #ccc;
-}
-    
-.form-check-input:checked {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-    
-.form-check-input:focus {
-    box-shadow: 0 0 0 3px rgba(10, 79, 138, 0.15) !important;
-    border-color: var(--secondary-color);
+.lounge-toggle-label{
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
-.form-label, .form-check-label, label {
-    font-weight: 500;
-    color: var(--text-dark);
-    margin-bottom: 0.25rem;
+.lounge-dropdown{
+    border-radius: 8px 8px 0 0;
+}
+
+.lounge-card .dropdown-menu {
+    border-radius: 0.375rem 0.375rem 0 0;
+    padding: 0.75rem 1rem;
+}
+
+.lounge-card .dropdown-menu p {
+    text-align: center;
+    margin: 0;
 }

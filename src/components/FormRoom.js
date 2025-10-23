@@ -45,7 +45,7 @@ export default function FormRoom() {
 
     // Disponibilidade
     const dispLabel = document.createElement('label');
-    dispLabel.textContent = 'Disponível?';
+    dispLabel.textContent = 'O quarto está disponivel?';
     dispLabel.className = 'form-label me-3 d-block';
     
     const dispDiv = document.createElement('div');

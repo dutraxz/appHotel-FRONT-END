@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . "/../models/QuartoModel.php";
+require_once __DIR__ . "/../models/ImagemModel.php";
 require_once "ValidatorController.php";
+require_once "ImagemController.php";
 
 
 class QuartoController{
@@ -10,6 +12,16 @@ class QuartoController{
 
         $result = QuartoModel::criar($conn, $data);
         if($result){
+            if ($data['fotos']) {
+                $pictures s= ImagemController::upload($data['fotos']);
+                foreach($pictures['saves'] as $name){
+                    $idFoto = ImgemModel::criar($conn, $data);
+                    if($idFoto){
+                        FotoModel::criarRelacaoQuarto($conn, $result, $idFoto);
+                    }
+                }
+
+            }
             return jsonResponse(['message' => "Quarto criado com sucesso"]);
         }
         else{

@@ -33,8 +33,8 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
-    $data = json_decode(file_get_contents('php://input'), true);
-    QuartoController::criar($conn, $data);
+    $data = $_POST;
+    $
 }
 
 elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
