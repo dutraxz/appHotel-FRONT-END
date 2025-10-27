@@ -29,14 +29,18 @@ import CardLounge from "../components/Cardlounge.js";
         divRoot.appendChild(dateSelector);
 
         // Obter elementos do formulário
-        const guestAmount = dateSelector.querySelector('select');
         const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date"]');
         const btnSearchRoom = dateSelector.querySelector('button');
-
+        
         //Constante que aloca o valor da data de hoje
         const dataHoje = new Date().toISOString().split("T")[0];
         dateCheckIn.min = dataHoje;
         dateCheckOut.min = dataHoje; 
+        
+        const guestAmount = dateSelector.querySelector('select');
+        dateCheckIn.id = 'id-dateCheckIn';
+        dateCheckOut.id = 'id-dateCheckOut';
+        guestAmount.id = 'id-guestAmount';
         
 
         // Criar container para cards de infraestrutura (lounge)
@@ -151,6 +155,7 @@ import CardLounge from "../components/Cardlounge.js";
     // Adicionar containers ao root: primeiro infraestrutura, depois resultados
     divRoot.appendChild(infraGroup);
     divRoot.appendChild(cardGroup);
+    divRoot.appendChild(tituloInfra);
 
     // Limpar e renderizar footer
     const rodape = document.getElementById('rodape');

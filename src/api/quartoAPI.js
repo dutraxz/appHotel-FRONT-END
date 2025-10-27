@@ -1,25 +1,40 @@
-// listar todos é uma função que retorna o valor do token armazenado no localStorage()
-// para que o usuario permaneça logado mesmo que mude de página e não tenha que "re-logar"
-// import { getToken } from "./authAPI.js";
+export async function addQuarto(contentForm) {
+    const formData = new FormData(contentForm);
+    const typeAccept = ['image/jpeg', 'image/png'];
+    const inputFotos = contentForm.querySelector('#formFileMultiple');
+    const imgs = inputFotos.files;
+    for (let i = 0; i < imgs.length; i++) {
+        if(!typeAccept.includes(imgs[i].type)) {
+            throw new Error(`Arquivo "${imgs[i].name}" não é suportado.
+            Selecione um arquivo JPG ou PNG`);
+        }}
+    const url = `api/quartos`;
+    const response = await fetch(url, {
+        method: "POST",
+        body: formData
+    });
+    // Interpreta a resposta como JSON
+    let result = null;
+    try {
+        result = await response.json();
+    }
+    catch {
+        // Se não for JSON válido, result permanece null
+        result = null;
+    }
+    if(!response.ok) {
+        throw new Error(`Erro ao enviar requisição: ${response.status}`);
+    }
+    return result; }   
 
-// // Listar todos os quartos independente de filtro
-// export async function requisicaoListarQuartos() {
-//     // Retorna o valor do token armazenado ( que comprova a autenticação do usuário)
-//     const token = getToken();
-
-    // Função para listar os quartos precisa ser assincrona, pois 
-    // espera-se uma "promise" de que chamar o endpoint api/rooms,
-    //(que executa p arquivo rooms.php no qual contém todas as requsições possíveis),
-    // 
-   export async function quartosDisponivelRequest({ dataInicio, dataFim, qtd }) {
-
+/* Listar os quartos disponíveis de acordo com inicio, fim e qtd */
+export async function quartosDisponivelRequest({ dataInicio, dataFim, qtd }) {
     const params = new URLSearchParams();
     if (dataInicio) params.set("dataInicio", dataInicio);
     if (dataFim) params.set("dataFim", dataFim);
     if (qtd !== null && qtd !== "") params.set("qtd", String(qtd));
 
-    const url = `api/quarto/disponivel?${params.toString()}`;
-
+    const url = `api/quartos/disponiveis?${params.toString()}`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -30,17 +45,15 @@
     let data = null;
     try {
         data = await response.json();
-    } catch {
+    }
+    catch {
         data = null;
     }
     if (!response.ok) {
-        const msg = data?.menssage || "Falha ao  buscar quartos disponiveis!";
+        const msg = data?.message || "Falha ao buscar quartos disponíveis!";
         throw new Error(msg);
     }
-     const quartos = Array.isArray(data?.Quartos)
-        ? data.Quartos
-        : (Array.isArray(data) ? data : []);
+    const quartos = Array.isArray(data?.Quartos) ? data.Quartos : [];
     console.log(quartos);
     return quartos;
-
 }

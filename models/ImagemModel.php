@@ -1,8 +1,17 @@
 <?php
 class ImagemModel {
-    public static function criar($conn, $data){
-    public static function criarRelacaoQuartos($conn, $data){
-            $MYsql = "INSERT INTO quartoos_fotos (quartos_id, foto_id) VALUES (?, ?)";
+    public static function create($conn, $name){
+        $MYsql = "INSERT INTO imagens (nome) VALUES (?)";
+        $stmt = $conn->prepare($MYsql);
+        $stmt->bind_param("s", $name);
+        if ($stmt->execute()){
+            return $conn->insert_id;
+        }
+        return false;
+    }
+
+    public static function criarRelacaoQuartos($conn, $idQuartos, $data){
+            $MYsql = "INSERT INTO imagens_quartos (quartos_id, fotos_id) VALUES (?, ?)";
             $stmt = $conn->prepare($MYsql);
             $stmt->bind_param("ii", $data["caminho"]);
             if($stmt->execute()){
@@ -10,7 +19,6 @@ class ImagemModel {
             }
             return false;
         }
-    }
     public static function listarTodos($conn){
         $MYsql = "SELECT * FROM imagens";
         $result = $conn->query($MYsql);
@@ -18,11 +26,18 @@ class ImagemModel {
         
     }
     public static function buscarPorId($conn, $id){
-    public static function buscarPorImagens($conn, $id){
-        $MYsql = "SELECT f.nome
-        FROM quartos_fotos qf
-        JOIN fotos f ON  qf.foto_id = f.id
-        WHERE qf.qaurtos_id = ?";
+        $MYsql = "SELECT * FROM imagens WHERE id=?";
+        $stmt = $conn->prepare($MYsql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+    public static function buscarIdQuarto($conn, $id){
+        $MYsql = "SELECT i.nome
+        FROM imagens_quartos iq
+        JOIN imagens i ON  iq.fotos_id = i.id
+        WHERE iq.quarto_id = ?";
 
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
@@ -36,20 +51,16 @@ class ImagemModel {
     }
 
     public static function deletar($conn, $id){
-        $MYsql = "DELETE FROM imagens WHERE caminho = ?";
+        $MYsql = "DELETE FROM imagens WHERE id = ?";
         $stmt = $conn->prepare($MYsql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
     public static function atualizar($conn, $id, $data){
-            $MYsql = "UPDATE imagens SET caminho = ?WHERE id = ?";
+            $MYsql = "UPDATE imagens SET nome = ? WHERE id = ?";
             $stmt = $conn->prepare($MYsql);
-            $stmt->bind_param("si",
-            $data["caminho"],
-            $id
-        );
+            $stmt->bind_param("si", $name, $id);
         return $stmt->execute();
-        }
     }
 }
 ?>

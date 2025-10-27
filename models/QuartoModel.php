@@ -14,6 +14,10 @@ class QuartoModel{
             $data["preco"]
         );
         return $stmt->execute();
+        if ($stmt->execute()){
+            return $conn->insert_id;
+        }
+        return false;
     }
     public static function listarTodos($conn){
         $MYsql = "SELECT * FROM quartos";

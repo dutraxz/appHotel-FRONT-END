@@ -4,12 +4,14 @@ export async function PedidoFinalizado(items) {
         //Por enquanto todo pagamento será via pix, até termos um frot para usuário
         //setar a forma de pagametno que desejar
         id_cliente_fk: 7,
+         /*Por enquanto todo pagamento será via pix, até termos um
+        front para usuário setar forma de pagamento que desejar */
         pagamento: "pix",
         quartos: items.map(it => (
             {
                 id: it.quarto.id,
-                inicio: it.checkIn,
-                fim: it.checkOut
+                dataInicio: it.checkIn,
+                dataFim: it.checkOut
             }
         ))
         

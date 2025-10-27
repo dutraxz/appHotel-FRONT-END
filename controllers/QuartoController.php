@@ -12,20 +12,20 @@ class QuartoController{
 
         $result = QuartoModel::criar($conn, $data);
         if($result){
-            if ($data['fotos']) {
-                $pictures s= ImagemController::upload($data['fotos']);
+            if ($data['imagens']) {
+
+                $pictures = ImagemController::upload($data['imagens']);
                 foreach($pictures['saves'] as $name){
                     $idFoto = ImgemModel::criar($conn, $data);
                     if($idFoto){
                         FotoModel::criarRelacaoQuarto($conn, $result, $idFoto);
                     }
                 }
-
             }
             return jsonResponse(['message' => "Quarto criado com sucesso"]);
         }
         else{
-        return jsonResponse(['message' => "Erro ao criar Quarto"]); 
+        return jsonResponse(['message' => "Erro ao criar Quarto"], 400); 
         }
     }
 
@@ -64,14 +64,15 @@ class QuartoController{
     
 
     public static function buscarDisponiveis($conn, $data){
-
         ValidatorController::validador_data($data, ["dataInicio", "dataFim", "qtd"]);
-
         $data["dataInicio"] = ValidatorController::dataHora($data["dataInicio"], 14);
         $data["dataFim"] = ValidatorController::dataHora($data["dataFim"], 12);
         
         $result = QuartoModel::buscarDisponiveis($conn, $data);
         if($result){
+            foreach ($result as &$quarto) {
+                $quarto['fotos'] = PhotoModel::getByRoomId($conn, $quarto['id']);
+            }
             return jsonResponse(['Quartos'=> $result]);    
         }else{
             return jsonResponse(['message'=>"não existe quartos disponiveis"], 400);

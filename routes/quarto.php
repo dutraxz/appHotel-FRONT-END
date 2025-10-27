@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET"){
     $id = $segmentos[2] ?? null;
 
     if (isset($id)){
-        if (is_numeric($id)){
+        if (is_numeric($id)){ //Cliente passou um numero -> (API/ROOMS/1)
             QuartoController::buscarPorId($conn, $id);
 
         }elseif($id === "disponivel"){ // cliente os disponiveis -> (API/ROOMS/DISPONIVEIS?)
@@ -34,9 +34,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
 
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
     $data = $_POST;
-    $
+    $data['imagens'] = $_FILES['imagens'] ?? null;
+    RoomController::create($conn, $data);
 }
-
 elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'];

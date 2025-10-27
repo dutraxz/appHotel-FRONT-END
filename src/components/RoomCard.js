@@ -1,6 +1,7 @@
 function calculoDiaria (checkIn, checkOut) {
-    const checkIn = "2026-01-01";
-    const checkOut = "2026-01-08";
+    //Feito para teste
+    //const checkIn = "2026-01-01";
+    //const checkOut = "2026-01-08";
 
     const [yin, min, din] = String(checkIn).split("-").map(Number);
     const [yout, mout, dout] = String(checkOut).split("-").map(Number);
@@ -14,6 +15,7 @@ function calculoDiaria (checkIn, checkOut) {
 }
 export default function RoomCard(itemCard, index = 0) {
     const {
+        id,
         nome,
         numero,
         camaCasal,
@@ -70,12 +72,51 @@ export default function RoomCard(itemCard, index = 0) {
         <div class="card-body">
             <h5 class="card-title">${title}</h5>
             <ul class="list-unstyled mb-2">
-           ${camas? `<li>${camas}` : ""}
-           ${preco != null ? `<li>Preço - Diaria: R$ ${Number(preco).toFixed(2)}</li>` : ""}
+                ${camas? `<li>${camas}` : ""}
+                ${preco != null ? `<li>Preço - Diaria: R$ ${Number(preco).toFixed(2)}</li>` : ""}
             </ul>
-            <a href="#" class="btn btn-primary">Reservar</a>
+            <a href="#" class="btn btn-primary btn-reservar">Reservar</a>
         </div>
     </div>
     `;
-    return card;
-}
+    card.querySelector('.btn-reservar').addEventListener('click', (event) => {
+        event.preventDefault();
+
+        //Ler informaçõessetadas nos inputs Check-in, Check-out e guestAmount (seu)
+        const idDateCheckIn = document.getElementById('id-dateCheckIn');
+        const idDateCheckOut = document.getElementById('id-dateCheckOut');
+        const idGuestAmount = document.getElementById('id-guestAmount');
+        
+        const inicio = (idDateCheckIn?.value || "");
+        const fim = (idDateCheckOut?.value || "");
+        const qtd = parseInt(idGuestAmount?.value || "0", 10);
+
+        //Validar se as datas foram preenchidas => contexto: usuario pesquisou quartos disponiveis, mas
+        //na hora de simplesmente resevar, usuario voltou ao compo de checkin ou checkout e apagou os valores
+        //e limpou a informação de lá, mas não setou uma nova pwsquisa p/ buscar novamente os quartos disponiveis quartos
+        if (!inicio || !fim || Number.isNaN(qtd) || qtd <= 0) {
+            console.log("Preencha todos os campos");
+            //TAREFA 1: renderizar nesse if() posteriormente um moddal do bootstrap
+            return;
+        }
+
+        const daily = calculoDiaria(inicio, fim);
+        //Calculo do valor subtotal do quarto(preco * n° diaria)
+        const subtotal = parseFloat(preco?? 0) * daily;
+        
+        const novoItemReserva = {
+            id,
+            nome,
+            checkIn: inicio,
+            chechkOut: fim,
+            guests: qtd,
+            daily,
+            subtotal
+        }
+        addItemToNovoHotel_Cart(novoItemReserva);
+        //Alerta pode ser trocado por um modeal com melhor aparencia
+        alert(`Reserva do quarto adicionada: ${nome} - Preço/diarias: R$ ${preco}
+            - N° de diárias: ${daily} - Subtotal: R$ ${subtotal}`);
+        }); 
+        return card;
+    }
