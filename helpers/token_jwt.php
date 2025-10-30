@@ -16,23 +16,32 @@ function validateToken($token){
     try{
         $key = new Key(SECRET_KEY, "HS256");
         $decode = JWT::decode($token, $key);
-        return $decode->sub;
-        
+        $result = json_decode(json_encode($decode->sub), true);
+        return $result;
+
     }catch(Exception $erroDB){
         return false;
     }
     
 }
-function validateTokenAPI(){
+function validateTokenAPI($tipoCargo){
     $headers = getallheaders();
     if(!isset($headers["Authorization"]) ){
-        jsonResponse(["messagem" => "Esta faltando o token"],401);
+        jsonResponse(["messagem" => "Esta faltando o token - token ausente"],401);
         exit;
     }
     $token = str_replace("Bearer ", "", $headers["Authorization"]);
-    if(!validateToken($token)){
-        jsonResponse(["messagem" => "O token esta invalido"],401);
+
+    $user = validateToken($token);
+
+    if(!$user){
+        jsonResponse(["messagem" => "O token esta invalido - a conversão não foi realizada com exito!"],401);
         exit;
     }
+        if($user['cargo'] != $tipoCargo){
+            jsonResponse(["messagem" => "Acesso negado - você não tem permissão para acessar este recurso!"], 401);
+            exit;
+    }
+    return $user;
 }
 ?>

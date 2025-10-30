@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../controllers/ClienteController.php";
  
 if ($_SERVER['REQUEST_METHOD'] === "GET"){
+    validateTokenAPI("infra");
     $id = $segmentos[2] ?? null;
     if(isset($id)){
         ClienteController::buscarPorId($conn, $id);
@@ -14,6 +15,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
     ClienteController::criar($conn, $data);
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
+    validateTokenAPI("infra");
     $id = $segmentos[2] ?? null;
    
     if(isset($id)){

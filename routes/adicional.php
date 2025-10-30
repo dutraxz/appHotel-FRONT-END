@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../controllers/AdicionalController.php";
  
 if ($_SERVER['REQUEST_METHOD'] === "GET"){
+     
     $id = $segmentos[2] ?? null;
     
     if(isset($id)){
@@ -11,12 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === "GET"){
     }
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
+    validateTokenAPI("Infra"); 
     $data = json_decode(file_get_contents('php://input'), true);
     AdicionalController::criar($conn, $data);
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
+     validateTokenAPI("Infra"); 
     $id = $segmentos[2] ?? null;
-   
+
     if(isset($id)){
         AdicionalController::deletar($conn, $id);
     }else{
@@ -24,6 +27,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     } 
 }
 elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
+     validateTokenAPI("Infra");
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'];
     AdicionalController::atualizar($conn, $id, $data);

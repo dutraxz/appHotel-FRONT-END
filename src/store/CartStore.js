@@ -1,7 +1,7 @@
 const key = "novoHotel_cart";
 
 export function setCart(novotel_cart){
-    localStorage.setItem(key, JSON.stringify(novotel_cart));
+    localStorage.setItem(key, JSON.stringify(Array.isArray(novoHotel_cart) ? novoHotel_cart: []));
 }
 export function getCart(){
     try{

@@ -1,7 +1,5 @@
-import NavBar from "../components/Navb  ar.js";
+import NavBar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
-import CartHeader from "../components/CartHeader.js";
-import CartRoomCard from "../components/CartRoomCard.js";
 import CartFooter from "../components/CartFooter.js";
 
 export default function renderCartPage() {
