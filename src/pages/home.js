@@ -6,7 +6,8 @@ import RoomCard from "../components/RoomCard.js";
 import Footer from "../components/Footer.js";
 import Modal from "../components/Modal.js";
 import Spinner from "../components/Spinner.js";
-import CardLounge from "../components/Cardlounge.js";
+import CardLounge from "../components/CardLounge.js";
+
 
     export default function renderHomePage() {
         //Navbar

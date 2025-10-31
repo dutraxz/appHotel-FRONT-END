@@ -1,6 +1,7 @@
 import NavBar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 import CartFooter from "../components/CartFooter.js";
+import CartHeader from "../components/CartHeader.js";
 
 export default function renderCartPage() {
     const nav = document.getElementById('navbar');
@@ -39,5 +40,5 @@ export default function renderCartPage() {
     foot.innerHTML = '';
         
     const footer = Footer();
-    foot.appendChild(footer);
+    footer.appendChild(footer);
 }
